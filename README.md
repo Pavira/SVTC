@@ -62,14 +62,17 @@ Accessible from any modern browser — no installation required.
 
 ---
 
-## 📞 Support & Contact
-For help or to report issues:  
-- 📧 Email: **swarmedtech@gmail.com**  
-- 📱 Phone: **+9629437702**  
-- 🌐 Website: [SVTC App](https://sreevenkateswara.pythonanywhere.com/)
+### **Contribution**
+
+Feel free to fork the repository, submit pull requests, or open issues for any bugs or feature requests.
+
+### **Show Your Support**
+
+If you like this repository, please 🌟 it to show your support and help others find it! Your support is greatly appreciated.
 
 ---
 
 ## 📌 License
 This project is proprietary and maintained by **Sree Venkateswara Textiles & Chemicals**.  
 Unauthorized distribution is prohibited.
+
