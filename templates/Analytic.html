@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="New Patient Registration">
+    <meta name="description" content="">
+    
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nicepage.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Home.css') }}" media="screen">
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/jquery.js')}}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/nicepage.js')}}" defer=""></script>
+    
+    <link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+    <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+
+    <style>
+      .custom-container {
+        width: 450px; /* Increased size */
+        padding: 10px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-color: #f9f9f9;
+        text-align: center;
+        margin: 10px auto;
+        position: relative;
+      }
+
+      .heading {
+        font-size: 10px; /* Smaller heading size */
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      .circle-container {
+        display: flex;
+        justify-content: center; /* Align items horizontally at the center */
+        align-items: center; /* Align items vertically at the center */
+        gap: 15px; /* Space between the circle items */
+      }
+
+      .circle-container-item {
+        display: flex;
+        flex-direction: column; /* Stack circle and description vertically */
+        align-items: center; /* Center both circle and description */
+        margin: 0; /* Remove any margin around the items */
+      }
+
+      .circle {
+        width: 120px; /* Increased size */
+        height: 120px; /* Increased size */
+        border-radius: 50%;
+        background-color: rgb(11, 11, 115);
+        color: white;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px; /* Increased font size inside the circle */
+        margin-bottom: 5px; /* Space between circle and description */
+      }
+      .bill-amount {
+          font-size: 40px;  /* Decrease the font size specifically for the total_bill_amount */
+      }
+
+      .description {
+        font-size: 12px; /* Increased size of description text */
+        color: #666;
+      }
+
+      /* Gray overlay */
+      #loadingOverlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          display: none; /* Initially hidden */
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+      }
+
+      /* Loading text */
+      #loadingOverlay span {
+          font-size: 2rem;
+          color: white;
+      }
+
+
+    </style>
+
+
+  </head>
+
+  <body class="u-body u-xl-mode" data-lang="en"><header class="u-box-shadow u-clearfix u-custom-color-7 u-header u-header" id="sec-7d85"><div class="u-clearfix u-sheet u-sheet-1">
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
+          <div class="menu-collapse" style="font-size: 1.5rem; letter-spacing: 0px; font-weight: 700;">
+            <a class="u-button-style u-custom-border u-custom-border-color u-custom-borders u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</g></svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-spacing-20 u-unstyled u-nav-1">
+                <li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('generateInvoicePage') }}" onclick="showLoadingOverlay()" style="padding: 24px 26px;">Invoice</a></li>
+
+                <li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('Logout') }}" style="padding: 24px 24px 24px 26px;">Logout</a></li>
+            </ul>
+          </div>
+          
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-text-active-palette-3-base u-text-hover-palette-3-light-2 u-unstyled u-nav-2">
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('generateInvoicePage') }}" onclick="showLoadingOverlay()">Invoice</a>
+                </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('Logout') }}" >Logout</a>  
+                </li>
+                </ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+        <h3 class="u-text u-text-custom-color-4 u-text-1">Sree Venkateswara Textiles & Chemicals</h3>
+      </div></header>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin-top: 10px;">
+        <div class="custom-container">
+          <h2 class="heading">Consignee</h2>
+          <div class="circle-container">
+            <div class="circle-container-item">
+              <div class="circle">{{ Total_Consignee }}</div>
+              <p class="description"><strong>Total Consignee</strong></p>
+            </div>
+            <!-- <div class="circle-container-item">
+              <div class="circle">{{Total_Customers}}</div>
+              <p class="description"><strong>Total Customers</strong></p>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="custom-container">
+          <h2 class="heading">Invoice</h2>
+          <div class="circle-container">
+            <div class="circle-container-item">
+              <div class="circle"><span class="bill-amount">{{ total_bill_amount }}</span></div>
+              <p class="description"><strong>Total Bill</strong></p>
+            </div>
+            <div class="circle-container-item">
+              <div class="circle">{{Total_invoice}}</div>
+              <p class="description"><strong>Total Invoice</strong></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="custom-container">
+          <h2 class="heading">Items</h2>
+          <div class="circle-container">
+            <div class="circle-container-item">
+              <div class="circle">{{Total_items}}</div>
+              <p class="description"><strong>Total Items</strong></p>
+            </div>
+            <!-- <div class="circle-container-item">
+              <div class="circle">{{Total_Product}}</div>
+              <p class="description"><strong>Total Products</strong></p>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- display: flex; align-items: center; justify-content: center; -->
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 2px 0;">
+        <div style="border: 2px solid #ccc; padding: 2px; text-align: center; margin-bottom: 2px;">
+          <p style="margin: 0; font-size: 12px;">Choose Year</p>
+          <button id="prevYear" style="border: none; background: none; font-size: 15px; cursor: pointer;">&#8592;</button>
+          <span id="yearDisplay" style="margin: 0 10px; font-size: 15px">24-25</span>
+          <button id="nextYear" style="border: none; background: none; font-size: 15px; cursor: pointer;">&#8594;</button>
+        </div>
+        <div>
+          <img src="{{ url_for('static', filename='po_graph.png') }}?{{ time() }}" alt="PO Graph">
+        </div>
+      </div>     
+      <form id="yearForm" method="GET" action="/Home">
+          <input type="hidden" id="yearInput" name="year" value="24-25">
+      </form>   
+      <!-- <img src="{{ url_for('static', filename='po_graph.png') }}?{{ time() }}" alt="PO Graph"> -->
+
+      <!-- Loading Overlay -->
+      <div id="loadingOverlay">
+        <span>Loading...</span>
+      </div>
+
+</body>
+
+<script>
+
+  // Function to show the loading overlay
+  function showLoadingOverlay() {
+      const loadingOverlay = document.getElementById("loadingOverlay");
+      loadingOverlay.style.display = "flex";
+  }
+
+  // Event listener to hide the loading overlay after the page has loaded
+  window.addEventListener("load", function () {
+      const loadingOverlay = document.getElementById("loadingOverlay");
+      loadingOverlay.style.display = "none";
+  });
+
+
+  // alert('hi');
+  // Get the current year value from the server-rendered page
+  let currentYear = parseInt("{{ year.split('-')[0] if year else '24' }}");
+    const yearDisplay = document.getElementById("yearDisplay");
+    const yearInput = document.getElementById("yearInput");
+
+    // Update the year display and form input
+    function updateYearDisplay() {
+        const startYear = currentYear;
+        const endYear = startYear + 1;
+        const yearText = `${startYear}-${endYear}`;
+        yearDisplay.textContent = `<${yearText}>`;
+        yearInput.value = yearText;
+    }
+
+    // Event listeners for arrows
+    document.getElementById("prevYear").addEventListener("click", () => {
+        if (currentYear > 24) { // Ensure we don't go below 24-25
+            currentYear--;
+            updateYearDisplay();
+            document.getElementById("yearForm").submit();
+        }
+    });
+
+    document.getElementById("nextYear").addEventListener("click", () => {
+        currentYear++;
+        updateYearDisplay();
+        document.getElementById("yearForm").submit();
+    });
+
+    // Set the initial year display on page load
+    updateYearDisplay();
+    
+</script>
+</html>

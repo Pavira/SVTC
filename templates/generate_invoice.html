@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="New Supplier Registration">
+    <meta name="description" content="">
+    
+    <title>Invoice Generation</title>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nicepage.css')}}" media="screen">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/Patient-Details.css')}}" media="screen"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Home.css') }}" media="screen">
+    <!-- <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/jquery.js')}}" defer=""></script> -->
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/nicepage.js')}}" defer=""></script>
+
+    <link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+    <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+    <meta name="generator" content="Nicepage 5.1.5, nicepage.com">
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+
+  </head>
+
+    <style>
+      .error-message {
+        color: red;
+        font-size: 15px;
+        font-weight: bold;
+      }
+      .success-message {
+        color: green;
+        font-size: 15px;
+        font-weight: bold;
+      }
+      .autocomplete-item {
+        padding: 8px;
+        cursor: pointer;
+    }
+    
+    .autocomplete-item:hover {
+        background-color: #f0f0f0;
+    }
+    
+    .custom-style {
+      width: 1100px !important;
+      height: 40px !important;
+      font-size: 16px;
+      background-color: rgb(243, 242, 242) !important;
+      color: rgb(181, 181, 181) !important;
+      border: 1px solid rgb(107, 106, 106);
+    }
+
+    .custom-style .dropdown-menu {
+      min-width: 1100px !important;
+    }
+
+    .custom-style .bs-searchbox input {
+      height: 35px;
+    }
+
+    .custom-style .dropdown-item {
+      font-size: 16px;
+      padding: 10px;
+    }
+    .chang {
+      width: 100%; /* Default size for larger screens */
+    }
+
+    @media (max-width: 768px) {
+      .chang {
+        width: 90%; /* Reduce size for phone view */
+        padding: 10px; /* Optional: Adjust padding for smaller screens */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .chang {
+        width: 100%; /* Full width for very small screens */
+      }
+    }
+    /* Gray overlay */
+    #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        /* Loading text */
+        #loadingOverlay span {
+            font-size: 2rem;
+            color: white;
+        }
+
+    </style>
+
+  <!-- bootstrap -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+    }
+    </script>
+    <script>   
+        if ( window.history.replaceState ) {  
+        window.history.replaceState(null,null,"{{ url_for('greeter') }}");  
+        }   
+    </script> 
+    
+    
+  <body class="u-body u-xl-mode" data-lang="en" >
+    <header class="u-box-shadow u-clearfix u-custom-color-7 u-header u-header" id="sec-7d85">
+        <div class="u-clearfix u-sheet u-sheet-1">
+        <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1">
+          <div class="menu-collapse" style="font-size: 1.5rem; letter-spacing: 0px; font-weight: 700;">
+            <a class="u-button-style u-custom-border u-custom-border-color u-custom-borders u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect></g></svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-spacing-20 u-unstyled u-nav-1">
+                <li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('greeter') }}" onclick="showLoadingOverlay()" style="padding: 24px 24px 24px 26px;">Home</a>
+                </li><li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('itemsPage') }}" onclick="showLoadingOverlay()" style="padding: 24px 24px 24px 26px;">Items</a>
+                </li><li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('consigneePage') }}" onclick="showLoadingOverlay()" style="padding: 24px 24px 24px 26px;">Consignee</a>    
+                </li><li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('viewInvoicePage') }}" onclick="showLoadingOverlay()" style="padding: 24px 24px 24px 26px;">Invoice</a>
+                </li><li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('Logout') }}" style="padding: 24px 24px 24px 26px;">Logout</a>             
+            </li></ul>    
+            </div>
+            <div class="u-custom-menu u-nav-container-collapse">
+              <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                <div class="u-inner-container-layout u-sidenav-overflow">
+                  <div class="u-menu-close"></div>
+                  <ul class="u-align-center u-nav u-popupmenu-items u-text-active-palette-3-base u-text-hover-palette-3-light-2 u-unstyled u-nav-2">
+                  <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('greeter') }}" onclick="showLoadingOverlay()" >Home</a>
+                  </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('itemsPage') }}" onclick="showLoadingOverlay()">Items</a>  
+                  </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('consigneePage') }}" onclick="showLoadingOverlay()">Consignee</a>
+                  </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('viewInvoicePage') }}" onclick="showLoadingOverlay()">Invoice</a>  
+                  </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('Logout') }}">Logout</a>  
+                  </li>
+                </ul>
+                </div>
+              </div>
+              <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>  
+        </nav>
+        <h3 class="u-text u-text-custom-color-4 u-text-1">Sree Venkateswara Textiles & Chemicals</h3>
+        </div>
+    </header>
+    <section class="u-align-center u-clearfix u-image u-section-1" id="sec-b388" data-image-width="7016" data-image-height="4016">
+      <div class="u-clearfix u-sheet u-valign-top u-sheet-1">
+        <div class="u-clearfix u-gutter-6 u-layout-wrap u-layout-wrap-1" >
+          <div class="u-gutter-0 u-layout">
+            <div class="u-layout-row u-size-80">
+              <div class="u-size-80">
+                <div class="u-layout-col">
+                  <div class="u-align-center u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
+                    <div class="u-container-layout u-valign-bottom u-container-layout-1">
+                      <div class="u-list u-list-1">
+                        <div class="u-repeater u-repeater-1">
+                          <div class="u-align-center u-container-align-center u-container-style u-list-item u-repeater-item u-shape-rectangle">
+                            <div class="u-container-layout u-similar-container u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-container-layout-2">
+                              <div class="u-align-center u-container-style u-custom-color-6 u-group u-shape-circle u-group-1">
+                                <div class="u-container-layout u-valign-middle">
+                                  <p class="u-text u-text-custom-color-4 u-text-default u-text-1">{{ Total_Items }}</p>
+                                </div>
+                              </div>
+                              <h5 class="u-align-center u-text u-text-black u-text-2">Total Items</h5>
+                            </div>
+                          </div>
+                          <div class="u-align-center u-container-style u-list-item u-repeater-item u-shape-rectangle">
+                            <div class="u-container-layout u-similar-container u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-container-layout-4">
+                              <div class="u-align-center u-container-style u-custom-color-6 u-group u-shape-circle u-group-2">
+                                <div class="u-container-layout u-valign-middle">
+                                  <p class="u-text u-text-custom-color-4 u-text-default u-text-3">{{ Total_Consignee }}</p>
+                                </div>
+                              </div>
+                              <h5 class="u-align-center u-text u-text-black u-text-4">Total Consignees</h5>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="u-align-center u-container-style u-grey-5 u-layout-cell u-left-cell u-shape-rectangle u-size-20 u-layout-cell-2 chang">
+                    <div class="u-border-4 u-border-grey-75 u-container-layout u-container-layout-8">
+                      <h2 class="u-subtitle u-text u-text-7">Invoice</h2>
+                      
+                      <div class="u-form u-form-1">
+                        <h3 class="u-subtitle u-text u-text-7" style="text-align: left; margin-left: 0; padding-left: 0;">Details Of Consignee</h3>
+                        <!-- form starts here  -->
+                        <form id="supplierForm" action="/generate_invoice" method="POST" target="_blank" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" name="form-6">
+                          
+                        <!-- <form id="supplierForm" action="/generate_invoice" method="POST" onsubmit="return handleFormSubmit(event)" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" name="form-6"> -->
+                          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" /> 
+                          <!-- <p class="u-form-group u-form-text u-text u-text-10 {% if Registration_Message == 'Supplier Registered Successfully' %}success-message{% else %}error-message{% endif %}">
+                              {{ supp_id }} - {{ Registration_Message }}
+                          </p> -->
+                        
+                          <!-- //////////// Consignee Details ////////////// -->
+
+                          <!-- Supplier Name: Max length 50 characters -->
+                          <!-- <div class="u-form-group u-form-name u-label-none">
+                              <label for="name" class="u-label">Consignee Name</label>
+                              <input type="text" placeholder="Consignee Name*" id="consignee_name" name="consignee_name" maxlength="50" pattern="^[A-Za-z0-9 ]*$" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required>
+                          </div> -->
+
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="name" class="u-label">Consignee Dropdown</label>
+                            <div class="u-form-select-wrapper">
+                              <select   
+                                class="selectpicker custom-style" 
+                                id="consignee_name" 
+                                name="consignee_name" 
+                                class="u-border-1 u-border-grey-30 u-input u-input-rectangle" 
+                                required="required" 
+                                data-live-search="true">
+                                <option value="" disabled selected>Consignee Name*</option>
+                                <!-- Options will be populated dynamically -->
+                              </select>    
+                            </div>   
+                          </div>
+
+                          <!-- GST No: Length exactly 15 characters -->
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="gst_no" class="u-label">GST No.</label>
+                            <input type="text" placeholder="Consignee GST No.*" id="gst_no" name="gst_no" pattern="^[A-Za-z0-9]{15}$" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required title="GST number must be exactly 15 characters" style="text-transform: uppercase">
+                            <small id="error-gst_no" style="color: red; display: none;">GST already exists in the database</small>
+                          </div>
+
+                          <!-- Address: Basic email-like format validation -->
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="address" class="u-label">Address</label>
+                            <textarea placeholder="Consignee Address*" id="address" name="address" maxlength="100" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required></textarea>                              
+                          </div>
+
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="state" class="u-label">State</label>
+                            <input 
+                                list="states" 
+                                id="state" 
+                                name="state" 
+                                class="u-border-1 u-border-grey-30 u-input u-input-rectangle" 
+                                value="Tamil Nadu" 
+                                required
+                            >
+                            <datalist id="states">
+                                <option value="Andhra Pradesh"></option>
+                                <option value="Arunachal Pradesh"></option>
+                                <option value="Assam"></option>
+                                <option value="Bihar"></option>
+                                <option value="Chhattisgarh"></option>
+                                <option value="Goa"></option>
+                                <option value="Gujarat"></option>
+                                <option value="Haryana"></option>
+                                <option value="Himachal Pradesh"></option>
+                                <option value="Jharkhand"></option>
+                                <option value="Karnataka"></option>
+                                <option value="Kerala"></option>
+                                <option value="Madhya Pradesh"></option>
+                                <option value="Maharashtra"></option>
+                                <option value="Manipur"></option>
+                                <option value="Meghalaya"></option>
+                                <option value="Mizoram"></option>
+                                <option value="Nagaland"></option>
+                                <option value="Odisha"></option>
+                                <option value="Punjab"></option>
+                                <option value="Rajasthan"></option>
+                                <option value="Sikkim"></option>
+                                <option value="Tamil Nadu"></option>
+                                <option value="Telangana"></option>
+                                <option value="Tripura"></option>
+                                <option value="Uttar Pradesh"></option>
+                                <option value="Uttarakhand"></option>
+                                <option value="West Bengal"></option>
+                                <option value="Andaman and Nicobar Islands"></option>
+                                <option value="Chandigarh"></option>
+                                <option value="Dadra and Nagar Haveli and Daman and Diu"></option>
+                                <option value="Delhi"></option>
+                                <option value="Jammu and Kashmir"></option>
+                                <option value="Ladakh"></option>
+                                <option value="Lakshadweep"></option>
+                                <option value="Puducherry"></option>
+                            </datalist>
+                        </div>
+                        
+
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="code" class="u-label">State Code</label>
+                            <input type="text" placeholder="Consignee State Code*" id="code" name="code" maxlength="50" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required>
+                            <!-- <small id="error-message" style="color: red; display: none;">Supplier already exists in the database</small> -->
+                          </div>
+
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="name" class="u-label">Purchase Order No</label>
+                            <input type="text" placeholder="Purchase Order No*" id="purchase_order_no" name="purchase_order_no" maxlength="50"  class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required style="text-transform: uppercase">
+                            <small id="error-message" style="color: red; display: none;">Purchase Order No already exists in the database</small>
+                          </div>
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="name" class="u-label">Purchase Order date</label>
+                            <input type="date" placeholder="Purchase date*" id="purchase_order_date" name="purchase_order_date" maxlength="50" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required>
+                            <!-- <small id="error-message" style="color: red; display: none;">Consignee already exists in the database</small> -->
+                          </div>
+
+                          <!-- //////////// Transport Details ////////////// -->
+
+
+                          <h3 class="u-subtitle u-text u-text-7" style="text-align: left; margin-left: 0; padding-left: 0;">Transport Details</h3>
+                          <!-- Supplier Name: Max length 50 characters -->
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="mode" class="u-label">Mode</label>
+                            <input type="text" placeholder="Mode*" id="mode" name="mode" maxlength="50" pattern="^[A-Za-z0-9 ]*$" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required style="text-transform: uppercase">
+                            <!-- <small id="error-message" style="color: red; display: none;">Supplier already exists in the database</small> -->
+                          </div>
+
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="vehicle_no" class="u-label">Vehicle No.</label>
+                            <input type="text" placeholder="Vehicle No.*" id="vehicle_no" name="vehicle_no" maxlength="50" pattern="^[A-Za-z0-9 ]*$" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required style="text-transform: uppercase">
+                            <!-- <small id="error-message" style="color: red; display: none;">Supplier already exists in the database</small> -->
+                          </div>
+
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="supply_place" class="u-label">Place of Supply</label>
+                            <input type="text" placeholder="Place of Supply*" id="supply_place" name="supply_place" maxlength="50" pattern="^[A-Za-z0-9 ]*$" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required style="text-transform: uppercase">
+                            <!-- <small id="error-message" style="color: red; display: none;">Supplier already exists in the database</small> -->
+                          </div>
+
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="supply_date" class="u-label">Date of Supply</label>
+                            <input type="date" placeholder="Date of Supply*" id="supply_date" name="supply_date" maxlength="50" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required>
+                            <!-- <small id="error-message" style="color: red; display: none;">Supplier already exists in the database</small> -->
+                          </div>
+
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="supply_time" class="u-label">Time of Supply</label>
+                            <input type="time" placeholder="Time of Supply*" id="supply_time" name="supply_time" maxlength="50" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required>
+                            <!-- <small id="error-message" style="color: red; display: none;">Supplier already exists in the database</small> -->
+                          </div>
+
+                          <div class="u-form-group u-form-name u-label-none">
+                            <label for="bill_no" class="u-label">E.way Bill No</label>
+                            <input type="text" placeholder="E.way Bill No*" id="bill_no" name="bill_no" maxlength="50"  class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required style="text-transform: uppercase">
+                            <!-- <small id="error-message" style="color: red; display: none;">Supplier already exists in the database</small> -->
+                          </div>
+                                                  
+                     
+                          <!-- Items Supplied Header -->
+                          <h3 class="u-subtitle u-text u-text-7">Items Details</h3>
+                      
+                          <div>
+                              <table id="itemsContainer" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" style="width: 100%; border-collapse: collapse;">
+                                  <thead>
+                                      <tr>
+                                          <th class="u-label" style="border-bottom: 1px solid #ddd; padding: 6px; text-align: left; width: 20%;">DESCRIPTION OF GOODS</th>
+                                          <th class="u-label" style="border-bottom: 1px solid #ddd; padding: 6px; text-align: left; width: 12%;">HSNCode</th>
+                                          <th class="u-label" style="border-bottom: 1px solid #ddd; padding: 6px; text-align: left; width: 10%;">Qty</th>
+                                          <th class="u-label" style="border-bottom: 1px solid #ddd; padding: 6px; text-align: left; width: 10%;">UOM</th>
+                                          <th class="u-label" style="border-bottom: 1px solid #ddd; padding: 6px; text-align: left; width: 10%;">RATE</th>                                      
+                                          <th class="u-label" style="border-bottom: 1px solid #ddd; padding: 6px; text-align: left; width: 10%;">GST%</th>
+                                          <th class="u-label" style="border-bottom: 1px solid #ddd; padding: 6px; text-align: left; width: 15%;">AMOUNT Rs.</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr class="item-entry">
+                                          <!-- <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 20%; position: relative;">
+                                            <input type="text" placeholder="DESCRIPTION OF GOODS*" id="item_name" name="item_name" maxlength="30" 
+                                                pattern="^[A-Za-z0-9 ]*$" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" 
+                                                required>
+                                          </td>     -->
+                                          
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 20%; position: relative;">
+                                            <div class="u-form-group u-form-name u-label-none">
+                                              <label for="name" class="u-label">Items Dropdown</label>
+                                              <div class="u-form-select-wrapper">
+                                                <select   
+                                                  class="selectpicker" 
+                                                  id="item_name0" 
+                                                  name="item_name" 
+                                                  class="u-border-1 u-border-grey-30 u-input u-input-rectangle" 
+                                                  required="required" 
+                                                  data-live-search="true">
+                                                  <option value="" disabled selected>DESCRIPTION OF GOODS*</option>
+                                                  <!-- Options will be populated dynamically -->
+                                                </select>    
+                                              </div>   
+                                            </div>
+                                          </td>
+                      
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 12%;">
+                                              <input type="text" placeholder="HSNCode*" id="HSNCode" name="HSNCode" min="1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required title="HSNCode should be a positive number" readonly style="text-transform: uppercase">
+                                          </td>
+
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                            <input type="number" placeholder="Qty" id="qty" name="qty" min="1" oninput="calculateTotals()" class="u-border-1 u-border-grey-30 u-input u-input-rectangle">
+                                          </td>
+
+                                          <!-- <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                            <select id="uom" name="uom" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required title="Select a UOM " style="text-transform: uppercase">
+                                                <option value="Kg" selected>Kg</option>
+                                                <option value="L">L</option>
+                                            </select>
+                                          </td>  -->
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                            <input id="uom" name="uom" class="u-border-1 u-border-grey-30 u-input u-input-rectangle"  required title="UOM" readonly>
+                                          </td>
+                      
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                            <input type="number" placeholder="RATE*" id="rate" name="rate" min="1" step="1" oninput="calculateTotals()" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required title="Rate should be a positive integer">
+                                          </td>   
+
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                            <input id="gst" name="gst" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" oninput="calculateTotals()" required title="Select a GST percentage" readonly>
+                                          </td>
+
+                                          <!-- <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                            <select id="gst" name="gst" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" oninput="calculateTotals()" required title="Select a GST percentage" >
+                                                <option value="18" selected>18%</option>
+                                                <option value="5" disabled>5%</option>
+                                                <option value="12" disabled>12%</option>
+                                                <option value="18" disabled>18%</option>
+                                                <option value="28" disabled>28%</option>
+                                            </select>
+                                          </td> -->
+                                          <!-- <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                            <select id="gst${currentRowId}" name="gst" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" oninput="calculateTotals()" required title="Select a GST percentage">
+
+                                                <option value="5" disabled>5%</option>
+                                                <option value="12" disabled>12%</option>
+                                                <option value="18" disabled>18%</option>
+                                                <option value="28" disabled>28%</option>
+                                            </select>
+                                          </td> -->
+                                          
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 15%;">
+                                            <input type="number" placeholder="AMOUNT Rs.*" id="totalPrice" name="totalPrice" min="1" step="1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required readonly>
+                                          </td>
+ 
+                                          <!-- <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 15%;">
+                                            <input type="number" placeholder="TAXABLE VALUE Rs.*" id="tax_amt" name="tax_amt" min="1" step="1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required readonly>
+                                          </td> -->
+                                      </tr>
+                                  </tbody>
+                                  <tfoot style="padding-left: 250px;">
+                                    <tr>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                        <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 15%; font-weight: bold; ">
+                                          <input type="text" value="Total:" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" readonly>                            
+                                        </td>
+                                        <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 15%;">
+                                          <input type="number" id="totalGST" name="totalGST" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" readonly>                           
+                                        </td>
+                                        <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 15%;">
+                                          <input type="text" id="totalUnitPrice" name="totalUnitPrice" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                        <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 15%; font-weight: bold;">
+                                          <input type="text" value="Grand Total:" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" readonly>
+                                        </td>
+                                        <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 15%;">
+                                          <input type="text" id="totalBill" name="totalBill" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" readonly>
+                                        </td>
+                                    </tr>
+                                  </tfoot>
+                              </table>
+                          </div>
+                      
+                          <!-- Buttons -->
+                          <br><br>
+                          <div id="message" style="color: red; font-weight: bold;"></div>
+                          <div class="u-form-group u-form-submit u-label-top" style="display: inline-block; margin-top: 20px;">
+                            <button 
+                              type="button" 
+                              id="addItemButton" 
+                              onclick="addItem()" 
+                              style="border: none; padding: 10px 20px; color: white; background-color: #040163; cursor: pointer; margin-right: 10px; border-radius: 5px;">
+                              Add Item
+                          </button>
+
+                          <button 
+                              type="submit" 
+                              id="submitButton" 
+                              style="border: none; padding: 10px 20px; color: white; background-color: rgb(1, 73, 1); cursor: pointer; margin-right: 10px; border-radius: 5px;">
+                              Generate Invoice
+                          </button>
+
+                          <button 
+                              type="button" 
+                              id="resetbutton" 
+                              onclick="location.href='/generateInvoicePage'" 
+                              style="border: none; padding: 10px 20px; color: white; background-color: rgb(93, 0, 0); cursor: pointer; border-radius: 5px;">
+                              Reset
+                          </button>
+
+                          </div>                             
+                          <input type="hidden" id="half_gst" name="half_gst">
+                      </form>                      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="data-consignee-names" data-consignee-names="{{ consignee_names }}"></div>
+      <!-- <div id="data-consignee-names" data-consignee-names="['Hindutan Consignee Private Lim', 'Ijuhasudhasd A', 'Kamiladasd', 'Sdaasdasd', 'Yosinitfa Asjdas Akjsdas Pvt L']"></div> -->
+      <div id="data-item-names" data-item-names="{{ item_names }}"></div>
+    </section>
+
+    <!-- Loading overlay -->
+    <div id="loadingOverlay">
+      <span>Loading...</span>
+    </div>
+
+    <footer style="background-color: #333; color: #fff; width: 100%; padding: 20px 0; position: relative;">
+      <div style="text-align: center; max-width: 1500px; margin: 0 auto; font-size: 14px;">
+          <p>© Copyright 2024: SWAR Technologies</p>
+      </div>
+    </footer>
+      <script>
+        document.getElementById('supplierForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        document.getElementById('supplierForm').submit();
+       
+        setTimeout(function() {
+          window.location.href = '/viewInvoicePage';
+        }, 500);
+    });
+    //     document.getElementById('supplierForm').addEventListener('submit', function() {
+    //     window.open('/viewInvoicePage');
+    // });
+        // JavaScript to show loading overlay on form submit
+        // const form = document.getElementById("supplierForm");
+        // const loadingOverlay = document.getElementById("loadingOverlay");
+
+        // form.addEventListener("submit", function (event) {
+        //     // Show the loading overlay
+        //     loadingOverlay.style.display = "flex";
+        // });
+
+        // Function to show the loading overlay
+        function showLoadingOverlay() {
+            const loadingOverlay = document.getElementById("loadingOverlay");
+            loadingOverlay.style.display = "flex";
+        }
+
+        // Event listener to hide the loading overlay after the page has loaded
+        window.addEventListener("load", function () {
+            const loadingOverlay = document.getElementById("loadingOverlay");
+            loadingOverlay.style.display = "none";
+        });
+
+        let currentRowId = 0;
+
+        document.getElementById("consignee_name").addEventListener("change", async function () {
+          const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+          const consigneeName = this.value;
+
+          try {
+            // Make the fetch request
+            const response = await fetch("/getConsigneeDetails", {
+              method: "POST",
+              headers: { 'Content-Type': 'application/json',
+                          'X-CSRFToken': csrfToken  // Include CSRF token in headers
+                 },
+              body: JSON.stringify({ consignee_name: consigneeName }),
+            });
+
+            // Parse the response JSON
+            const data = await response.json();
+
+            // Update the placeholders with the fetched data
+            if (data.success) {
+              document.getElementById("gst_no").value = data.gst_no || "N/A";
+              document.getElementById("state").value = data.state || "N/A";
+              document.getElementById("code").value = data.code || "N/A";
+              document.getElementById("address").textContent = data.address || "N/A";
+            } else {
+              console.error(data.message);
+            }
+          } catch (error) {
+            console.error("Error fetching consignee details:", error);
+          }
+        });
+
+
+        // function getItemDetails
+        async function get_items_details(tableId) {
+          // alert("tableId----" + tableId)
+            const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+            const itemName = document.getElementById(`item_name${tableId}`).value;
+
+            try {
+                // Make the fetch request
+                const response = await fetch("/getItemDetails", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken // Include CSRF token in headers
+                    },
+                    body: JSON.stringify({ item_name: itemName }),
+                });
+
+                // Parse the response JSON
+                const data = await response.json();
+
+                // Update the placeholders with the fetched data
+                if (data.success) {
+                    document.getElementById(`HSNCode${tableId}`).value = data.HSNCode || "N/A";
+                    document.getElementById(`uom${tableId}`).value = data.uom || "N/A";
+                    document.getElementById(`gst${tableId}`).value = data.gst || "N/A";
+                } else {
+                    console.error(data.message);
+                }
+            } catch (error) {
+                console.error("Error fetching item details:", error);
+            }
+        }
+
+
+        document.getElementById(`item_name${currentRowId}`).addEventListener("change", async function () {
+          // alert("currentRowId----" + currentRowId)
+          const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+          const itemName = this.value;
+
+          try {
+            // Make the fetch request
+            const response = await fetch("/getItemDetails", {
+              method: "POST",
+              headers: { 'Content-Type': 'application/json',
+                          'X-CSRFToken': csrfToken  // Include CSRF token in headers
+                 },
+              body: JSON.stringify({ item_name: itemName }),
+            });
+
+            // Parse the response JSON
+            const data = await response.json();
+
+            // Update the placeholders with the fetched data
+            if (data.success) {
+              document.getElementById("uom").value = data.uom || "N/A";
+              document.getElementById("HSNCode").value = data.HSNCode || "N/A";
+              document.getElementById("gst").value = data.gst || "N/A";
+            } else {
+              console.error(data.message);
+            }
+          } catch (error) {
+            console.error("Error fetching consignee details:", error);
+          }
+        });
+        
+        // Define the function to populate the dropdown
+        function populateItemsDropdown() {
+        
+            let dataItemNames = []; // Declare the variable in a higher scope
+
+            try {
+              // Get the raw data-item-names attribute value
+              const dataItemNamesDiv = document.getElementById("data-item-names");
+              const dataItemNamesRaw = dataItemNamesDiv.getAttribute("data-item-names");
+
+              // console.log("Raw data-item-names:", dataItemNamesRaw);
+
+              // Replace single quotes with double quotes
+              const validJsonString = dataItemNamesRaw.replace(/'/g, '"');
+              // console.log("Valid JSON string:", validJsonString);
+
+              // Parse the JSON string into an array
+              dataItemNames = JSON.parse(validJsonString);
+              // console.log("Parsed data-item-names:", dataItemNames);
+            } catch (error) {
+              console.error("Error parsing data-item-names:", error.message);
+            }
+
+            // Populate dropdown
+            const dropdown = $('#item_name0');
+            dataItemNames.forEach(item => {
+              dropdown.append(`<option value="${item}">${item}</option>`);
+            });
+
+            // Initialize Bootstrap Select
+            dropdown.selectpicker({
+                  size: 15, // Adjust the number of visible items
+                  width: 'auto'
+
+                });
+          }
+
+          // Wait for the DOM content to be loaded and then call the function
+          document.addEventListener('DOMContentLoaded', function() {
+            populateItemsDropdown();
+          });
+
+
+
+         // Define the function to populate the dropdown
+        function populateDropdown() {
+          let dataItemNames = []; // Declare the variable in a higher scope
+          // alert("reached");
+
+          try {
+            // Get the raw data-consignee-names attribute value
+            const dataItemNamesDiv = document.getElementById("data-consignee-names");
+            const dataItemNamesRaw = dataItemNamesDiv.getAttribute("data-consignee-names");
+
+            // console.log("Raw data-consignee-names:", dataItemNamesRaw);
+
+            // Replace single quotes with double quotes
+            const validJsonString = dataItemNamesRaw.replace(/'/g, '"');
+            // console.log("Valid JSON string:", validJsonString);
+
+            // Parse the JSON string into an array
+            dataItemNames = JSON.parse(validJsonString);
+            // console.log("Parsed data-consignee-names:", dataItemNames);
+          } catch (error) {
+            console.error("Error parsing data-consignee-names:", error.message);
+          }
+
+          // Populate dropdown
+          const dropdown = $('#consignee_name');
+          dataItemNames.forEach(item => {
+            dropdown.append(`<option value="${item}">${item}</option>`);
+          });
+
+          // Initialize Bootstrap Select
+          dropdown.selectpicker({
+                size: 15, // Adjust the number of visible items
+                width: 'auto'
+
+              });
+        }
+
+        // Wait for the DOM content to be loaded and then call the function
+        document.addEventListener('DOMContentLoaded', function() {
+          populateDropdown();
+        });
+
+         
+
+
+    function calculateTotals() {
+        let totalGST = 0.0;
+        let totalUnitPrice = 0;
+
+        // Iterate over all rows in the table body
+        const rows = document.querySelectorAll(".item-entry");
+        rows.forEach(row => {
+            // Get the quantity, GST, and unit price inputs
+            const quantityInput = row.querySelector('input[name="qty"]');
+            const gstInput = row.querySelector('input[name="gst"]');
+            const unitPriceInput = row.querySelector('input[name="rate"]');
+            const totalPriceInput = row.querySelector('input[name="totalPrice"]');
+
+
+            // Parse their values
+            const quantity = parseFloat(quantityInput?.value) || 0;
+            const gst = parseFloat(gstInput?.value) || 0;
+            const unitPrice = parseFloat(unitPriceInput?.value) || 0;
+
+            const totalPrice = unitPrice * quantity;
+
+            // Calculate GST and total unit price
+            // Update the totalPrice input field    
+            totalPriceInput.value = totalPrice.toFixed(2);
+            totalGST += (gst / 100) * unitPrice * quantity;
+            totalUnitPrice += unitPrice * quantity;
+        });
+
+        // Update the totals in the form
+        const totalGSTInput = document.getElementById("totalGST");
+        const totalUnitPriceInput = document.getElementById("totalUnitPrice");
+        const totalBillInput = document.getElementById("totalBill");
+
+        // Set the calculated values
+        totalGSTInput.value = Number(totalGST).toFixed(2);
+        totalUnitPriceInput.value = totalUnitPrice.toFixed(2); 
+        totalBillInput.value = Number((totalGST + totalUnitPrice).toFixed(2));
+
+        const messageElement = document.getElementById("message"); // Get the message element
+        customMessage = "Adjust the Totall Bill Amount Before Adding New Row";
+        const errorMessage = document.getElementById('errorMessage');
+        const addButton = document.getElementById("addItemButton");
+        // messageElement.textContent = "";
+
+        document.getElementById("half_gst").value = (Number(totalGSTInput.value) / 2).toFixed(2);
+
+    }
+        
+
+       
+    //   document.getElementById('name').addEventListener('blur', async () => {
+    //     const csrfToken = document.querySelector('input[name="csrf_token"]').value;  // Get CSRF token
+    //     const input = document.getElementById('name');
+    //     const errorMessage = document.getElementById('error-message');
+
+    //     if (input.value.trim() === '') {
+    //         errorMessage.style.display = 'none';
+    //         return;
+    //     }
+
+    //     try {
+    //         // Send a POST request to check for duplicate supplier names
+    //         const response = await fetch('/check_supplier', {
+    //             method: 'POST',
+    //             headers: { 'Content-Type': 'application/json',
+    //                       'X-CSRFToken': csrfToken  // Include CSRF token in headers
+    //              },
+    //             body: JSON.stringify({ name: input.value.trim() }),
+    //         });
+
+    //         const result = await response.json();
+
+    //         if (result.exists) {
+    //             // If duplicate is found, show the error message
+    //             errorMessage.textContent = 'Supplier already exists in the database';
+    //             errorMessage.style.display = 'block';
+    //         } else {
+    //             // Hide the error message if no duplicate is found
+    //             errorMessage.style.display = 'none';
+    //         }
+    //     } catch (error) {
+    //         console.error('Error checking supplier:', error);
+    //     }
+    // });
+
+    // document.getElementById('gst_no').addEventListener('blur', async () => {
+    //     const csrfToken = document.querySelector('input[name="csrf_token"]').value;  // Get CSRF token
+    //     const input = document.getElementById('gst_no');
+    //     const errorMessage = document.getElementById('error-gst_no');
+
+    //     if (input.value === '') {
+    //         errorMessage.style.display = 'none';
+    //         return;
+    //     }
+
+    //     try {
+    //         // Send a POST request to check for duplicate supplier names
+    //         const response = await fetch('/check_gst_no', {
+    //             method: 'POST',
+    //             headers: { 'Content-Type': 'application/json',
+    //                       'X-CSRFToken': csrfToken  // Include CSRF token in headers
+    //              },
+    //             body: JSON.stringify({ gst_no: input.value }),
+    //         });
+
+    //         const result = await response.json();
+
+    //         if (result.exists) {
+    //             // If duplicate is found, show the error message
+    //             errorMessage.textContent = 'GST No. already exists in the database';
+    //             errorMessage.style.display = 'block';
+    //         } else {
+    //             // Hide the error message if no duplicate is found
+    //             errorMessage.style.display = 'none';
+    //         }
+    //     } catch (error) {
+    //         console.error('Error checking Phone:', error);
+    //     }
+    // });
+
+        function handleFormSubmit(event) {
+            const customMessage = "Please fill all the fields before submitting the form.";
+            if (!validate(customMessage)) {
+                event.preventDefault(); // Prevent form submission
+            }
+        }
+
+
+        // document.getElementById("email").addEventListener("blur", function() {
+        //     const emailInput = this.value.trim();
+        //     const emailArray = emailInput.split(",").map(email => email.trim());
+        //     // alert(emailInput);
+
+        //     // Validate each email
+        //     const invalidEmails = emailArray.filter(email => !validateEmail(email));
+        //     const errorSpan = document.getElementById("email-error");
+
+        //     if (invalidEmails.length > 0) {
+        //         errorSpan.textContent = `Invalid email(s): ${invalidEmails.join(", ")}`;
+        //         this.style.borderColor = "red"; // Highlight the input field in red
+        //     } else {
+        //         errorSpan.textContent = ""; // Clear the error message
+        //         this.style.borderColor = ""; // Reset the border color
+        //         console.log("Valid emails:", emailArray);
+        //         // Proceed with further logic using emailArray
+        //     }
+        // });
+
+        // Email validation function
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function disableSubmitButton() {
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting..."; // Optional: Update button text
+        }
+
+        function validate(customMessage) {
+            const rows = document.querySelectorAll('.item-entry');
+            const messageElement = document.getElementById("message"); // Get the message element
+
+            // Loop through each row to check if all fields are filled
+            for (let i = 0; i < rows.length; i++) {
+                let itemName = rows[i].querySelector('input[name="item_name"]');
+                let HSNCode = rows[i].querySelector('input[name="HSNCode"]');
+                let qty = rows[i].querySelector('input[name="qty"]');
+                let rate = rows[i].querySelector('input[name="rate"]');
+
+                // Debugging: Check if elements are found before accessing their values
+                if (!itemName || !HSNCode || !qty || !rate) {
+                    console.error(`Missing input field in row ${i}`);
+                    messageElement.textContent = "Some required fields are missing.";
+                    return false;
+                }
+                if (!/^\d+$/.test(HSNCode.value)) {
+                    messageElement.textContent = `HSNCode in row ${i + 1} must be a positive integer.`; // Display specific error message
+                    return false; // If quantity is invalid, return false
+                }
+                if (!/^\d+$/.test(qty.value)) {
+                    messageElement.textContent = `qty in row ${i + 1} must be a positive integer.`; // Display specific error message
+                    return false; // If quantity is invalid, return false
+                }
+                if (!/^\d+$/.test(rate.value)) {
+                    messageElement.textContent = `rate in row ${i + 1} must be a positive integer.`; // Display specific error message
+                    return false; // If quantity is invalid, return false
+                }
+                // Check if any of the fields is empty or invalid
+                if (!itemName.value || !HSNCode.value|| !qty.value || !rate.value) {
+                    messageElement.textContent = customMessage;
+                    return false; // Prevent adding a row if any field is empty
+                }
+            }
+
+            const supplierForm = document.getElementById('supplierForm');
+            const inputs = supplierForm.querySelectorAll('input, select, textarea'); // Include all input elements
+
+            for (let input of inputs) {
+                if (input.hasAttribute('required') && !input.value.trim()) {
+                    // Show custom error message
+                    if (messageElement) {
+                        const customMessage = "Please fill all the fields before Registering the user.";
+                        messageElement.textContent = customMessage;
+                    }
+                    input.focus(); // Focus the invalid field
+                    return false; // Return false to indicate validation failure
+                }
+            }
+
+            // Clear the error message if validation passes
+            messageElement.textContent = "";
+            return true; // If all fields are valid, return true to allow adding the row
+        }
+
+        // Define the function to populate the dropdown
+        function populateAddItemsDropdown(tableId) {
+            let dataItemNames = []; // Declare the variable in a higher scope
+
+            try {
+              // Get the raw data-item-names attribute value
+              const dataItemNamesDiv = document.getElementById("data-item-names");
+              const dataItemNamesRaw = dataItemNamesDiv.getAttribute("data-item-names");
+
+              // console.log("Raw data-item-names:", dataItemNamesRaw);
+
+              // Replace single quotes with double quotes
+              const validJsonString = dataItemNamesRaw.replace(/'/g, '"');
+              // console.log("Valid JSON string:", validJsonString);
+
+              // Parse the JSON string into an array
+              dataItemNames = JSON.parse(validJsonString);
+              // console.log("Parsed data-item-names:", dataItemNames);
+            } catch (error) {
+              console.error("Error parsing data-item-names:", error.message);
+            }
+
+            // Populate dropdown
+            const dropdown = $(`#item_name${tableId}`);
+            dataItemNames.forEach(item => {
+              dropdown.append(`<option value="${item}">${item}</option>`);
+            });
+
+            // Initialize Bootstrap Select
+            dropdown.selectpicker({
+                  size: 15, // Adjust the number of visible items
+                  width: 'auto'
+
+                });
+          }
+        
+
+        function addItem() {
+          // const customMessage = "Please fill all the fields before generating the new Row.";
+          //   if (!validate(customMessage)) {                
+          //       return; // Exit if validation fails
+          //   }
+          console.log("Adding item with currentRowId:", currentRowId);
+
+            currentRowId ++;
+            const container = document.getElementById("itemsContainer");
+            const row = document.createElement("tr");
+            row.classList.add("item-entry");
+
+            row.innerHTML = `
+                                            
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 20%; position: relative;">
+                                            <div class="u-form-group u-form-name u-label-none">
+                                              <label for="name" class="u-label">Items Dropdown</label>
+                                              <div class="u-form-select-wrapper">
+                                                <select   
+                                                  class="selectpicker" 
+                                                  id="item_name${currentRowId}" 
+                                                  name="item_name" 
+                                                  class="u-border-1 u-border-grey-30 u-input u-input-rectangle" 
+                                                  required="required" 
+                                                  data-live-search="true"
+                                                  onchange="get_items_details(${currentRowId})">
+                                                  <option value="" disabled selected>DESCRIPTION OF GOODS*</option>
+                                                  <!-- Options will be populated dynamically -->
+                                                </select>    
+                                              </div>   
+                                            </div>
+                                          </td>
+                                          
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                              <input type="text" placeholder="HSNCode*" id="HSNCode${currentRowId}" name="HSNCode" min="1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required title="HSNCode should be a positive number" readonly>
+                                          </td>
+
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                            <input type="number" placeholder="Qty" id="qty${currentRowId}" name="qty" min="1" oninput="calculateTotals()" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" >
+                                          </td>
+
+
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                            <input id="uom${currentRowId}" name="uom" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required title="UOM" readonly>
+                                          </td>
+                      
+                                          <!-- Delivery Time: Number, suffixed with days -->
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                            <input type="number" placeholder="RATE*" id="rate${currentRowId}" name="rate" min="1" step="1" oninput="calculateTotals()" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required title="Rate should be a positive integer">
+                                          </td>   
+
+                                          
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                            <input id="gst${currentRowId}" name="gst" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" oninput="calculateTotals()" required title="Select a GST percentage" readonly>
+                                          </td>
+                                          
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 15%;">
+                                            <input type="number" placeholder="AMOUNT Rs.*" id="totalPrice${currentRowId}" name="totalPrice" min="1" step="1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required readonly>
+                                          </td>
+                                          <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                                              <button type="button" onclick="removeItemRow(this)" style="background-color: #8B0000; color: white; border: none; padding: 5px 10px; cursor: pointer;">Remove</button>
+                                          </td>
+            `;
+            container.appendChild(row);
+
+            const newQuantityInput = row.querySelector('input[name="qty"]');
+            // const newItemSelect = row.querySelector('select[name="item_name"]');
+
+            newQuantityInput.addEventListener('input', calculateTotals);
+
+            // Initialize or refresh the selectpicker for the new dropdown
+            // $(`#item_name${currentRowId}`).selectpicker();
+            // $(`#item_name${currentRowId}`).selectpicker('refresh');
+            
+            populateAddItemsDropdown(currentRowId);
+            
+        }
+
+        function removeItemRow(button) {
+
+            const row = button.parentElement.parentElement;
+            row.remove();
+            calculateTotals();
+            // currentRowId--;
+            // // Initialize or refresh the selectpicker for the new dropdown
+            // $(`#item_name${currentRowId}`).selectpicker();
+            // $(`#item_name${currentRowId}`).selectpicker('refresh');
+            // Refresh all selectpickers to avoid initialization issues
+            $('.selectpicker').selectpicker('refresh');
+        }      
+               
+
+    </script>
+
+</body>
+</html>

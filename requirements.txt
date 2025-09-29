@@ -1,0 +1,15 @@
+Flask==2.2.3
+Flask-WTF==1.1.1
+Flask-Session==0.4.0
+Flask-Login==0.6.2
+firebase-admin==5.2.0
+Pyrebase4==4.6.0
+matplotlib==3.8.0
+reportlab==4.0.4
+num2words==0.5.12
+colorama==0.4.6
+idna==3.3
+Jinja2==3.1.2
+Werkzeug==2.2.3
+
+

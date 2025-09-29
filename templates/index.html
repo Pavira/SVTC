@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sree Venkateswara Textiles & Chemicals</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nicepage.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Home.css') }}" media="screen">
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/jquery.js')}}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/nicepage.js')}}" defer=""></script>
+
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": ""
+    }</script>
+</head>
+
+<style>
+    /* Gray overlay */
+    #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        /* Loading text */
+        #loadingOverlay span {
+            font-size: 2rem;
+            color: white;
+        }
+</style>
+
+
+<script>
+    // Stop the form resubmission on page refresh
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, "{{ url_for('index') }}");
+    }
+</script>
+<body class="u-body u-xl-mode" data-lang="en">
+    <section class="u-align-center u-clearfix u-image u-section-1" id="sec-b388" style="text-align:left">
+        <br>
+        <form action="Home" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <br><br><br>
+            {% for message in welcome_messages %}
+                <h2 style="color:rgb(26, 20, 123);font-family:Trebuchet MS;"><b>{{ message }}</b></h2>
+            {% endfor %}
+            <br>
+            <br>
+            <p><input style="color:rgb(24, 20, 86);" type="text" name="username_input" value="venkateshprabhu768@gmail.com"  placeholder="Enter User Name" required></p>
+            <br><br>
+            <p><input style="color:rgb(24, 20, 86);" type="password" name="password_input" value="Fallswater_15" placeholder="Enter Password" required></p>
+            <br>
+            <p style="color:rgb(24, 20, 86);">{{ login_message }}</p>
+            <br>
+            <p><input type="submit" style="color:rgb(24, 20, 86);" value="Login" id="login"></p>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </form>
+    </section>
+    <!-- value="pavivalavan@gmail.com"
+    value="1234567" -->
+    <!-- Loading overlay -->
+    <div id="loadingOverlay">
+        <span>Loading...</span>
+    </div>
+    <script>
+    // JavaScript to show loading overlay on form submit
+        // const form = document.getElementById("supplierForm");
+        const loadingOverlay = document.getElementById("loadingOverlay");
+
+        document.addEventListener("submit", function (event) {
+            // Show the loading overlay
+            loadingOverlay.style.display = "flex";
+        });
+    </script>
+
+</body>
+</html>

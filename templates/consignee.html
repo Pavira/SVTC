@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="List Of Products">
+    <meta name="description" content="">
+    <title>Consignee Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nicepage.css')}}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Patient-Details.css')}}" media="screen">
+    <!-- <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/jquery.js')}}" defer=""></script> -->
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/nicepage.js')}}" defer=""></script>
+
+    <link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+    <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+    <meta name="generator" content="Nicepage 5.1.5, nicepage.com">
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+    }
+  </script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Product Details">
+    <meta property="og:type" content="website">
+  </head>
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+
+    .u-text {
+      color: #111010;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .u-section-1,
+    .u-section-2 {
+      margin: 0;
+      padding: 20px;
+    }
+
+    .u-table {
+      width: 110%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      max-height: 100%; /* Adjust the height as needed */
+    }
+
+    .u-table-entity {
+      width: 120%;
+      border-collapse: collapse;
+    }
+
+    .u-table-header th {
+      background-color: #15155f;
+      color: #fff;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .u-table-entity td,
+    .u-table-entity th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    /* button {
+      background-color: #15155f;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #002e60;
+    } */
+
+    .u-table-entity tr:nth-child(odd) {
+      background-color: #ffffff; /* White for odd rows */
+    }
+
+    .u-table-entity tr:nth-child(even) {
+      background-color: #f2f2f2; /* Light gray for even rows */
+    }
+
+    .u-table-entity tr:hover {
+      background-color: #ddd; /* Darker gray for hover */
+    }
+
+    form {
+      display: inline;
+    }
+
+    .pagination-button {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f2f2f2; /* Light gray */
+        color: #333;
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .pagination-button:hover {
+        background-color: #e0e0e0; /* Slightly darker gray for hover */
+    }
+
+    .pagination-button.active {
+        background-color: #d6d6d6; /* A darker gray for active button */
+        font-weight: bold;
+    }
+    .autocomplete-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      max-height: 150px;
+      overflow-y: auto;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .autocomplete-list li {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .autocomplete-list li:hover {
+      background-color: #f0f0f0;
+    }
+
+    .autocomplete-wrapper {
+      position: relative;
+    }
+
+     /* Hover and Active Effects */
+     .styled-button:hover {
+        background-color: #15155f; /* Slightly lighter shade for hover */
+        transform: translateY(-2px); /* Lift button slightly */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+    }
+
+    .styled-button:active {
+        background-color: #10104a; /* Darker shade for active state */
+        transform: translateY(0); /* Reset movement */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    }
+
+    #setInvoice {
+    width: 200px; /* Adjust width as per requirement */
+    padding: 8px;
+    font-size: 14px;
+  }
+  .pagination-button {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f2f2f2; /* Light gray */
+        color: #333;
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .pagination-button:hover {
+        background-color: #e0e0e0; /* Slightly darker gray for hover */
+    }
+
+    .pagination-button.active {
+        background-color: #d6d6d6; /* A darker gray for active button */
+        font-weight: bold;
+    }
+
+    button[type="button"] {
+        background-color: #15155f; /* Default background color */
+        color: white; /* Default text color */
+        border: none; /* Remove border */
+        padding: 12px 25px; /* Button padding */
+        border-radius: 8px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor */
+        font-weight: 600; /* Bold text */
+        font-size: 14px; /* Font size */
+        transition: all 0.3s ease; /* Smooth transition */
+      }
+
+      button[type="button"]:hover {
+          background-color: #1d1d80; /* Slightly darker shade for hover */
+          color: #f0f0f0; /* Slightly lighter text color */
+          transform: translateY(-2px); /* Move the button upwards slightly */
+          box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Add a shadow */
+      }
+
+      button[type="button"]:active {
+          background-color: #10104a; /* Darker shade for active state */
+          transform: translateY(0); /* Reset movement */
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+      }
+
+      button[type="submit"] {
+        background-color: #15155f; /* Default background color */
+        color: white; /* Default text color */
+        border: none; /* Remove border */
+        padding: 12px 25px; /* Button padding */
+        border-radius: 8px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor */
+        font-weight: 600; /* Bold text */
+        font-size: 14px; /* Font size */
+        transition: all 0.3s ease; /* Smooth transition */
+      }
+
+      button[type="submit"]:hover {
+          background-color: #1d1d80; /* Slightly darker shade for hover */
+          color: #f0f0f0; /* Slightly lighter text color */
+          transform: translateY(-2px); /* Move the button upwards slightly */
+          box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Add a shadow */
+      }
+
+      button[type="submit"]:active {
+          background-color: #10104a; /* Darker shade for active state */
+          transform: translateY(0); /* Reset movement */
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+      }
+
+      /* Gray overlay */
+      #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        /* Loading text */
+        #loadingOverlay span {
+            font-size: 2rem;
+            color: white;
+        }
+
+  </style>
+
+<body class="u-body u-xl-mode" data-lang="en">
+  <header class="u-box-shadow u-clearfix u-custom-color-7 u-header u-header" id="sec-7d85">
+    <div class="u-clearfix u-sheet u-sheet-1">
+    <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1" style="margin-left: 450px;">
+      <div class="menu-collapse" style="font-size: 1.5rem; letter-spacing: 0px; font-weight: 700;">
+        <a class="u-button-style u-custom-border u-custom-border-color u-custom-borders u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+          <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+          <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect></g></svg>
+        </a>
+      </div>
+      <div class="u-custom-menu u-nav-container">
+        <ul class="u-nav u-spacing u-unstyled u-nav-1">
+            <li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('greeter') }}" onclick="showLoadingOverlay()" style="padding: 24px 24px 24px 26px;font-size: 20px;">Home</a></li>
+            <li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('generateInvoicePage') }}" onclick="showLoadingOverlay()" style="padding: 24px 24px 24px 26px;font-size: 20px;">Generate Invoice</a></li>
+            <li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('itemsPage') }}" onclick="showLoadingOverlay()" style="padding: 24px 24px 24px 26px;font-size: 20px;">Items</a></li>
+            <li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('viewInvoicePage') }}" onclick="showLoadingOverlay()" style="padding: 24px 24px 24px 26px;font-size: 20px;">View Invoice</a></li>
+<li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('Logout') }}" style="padding: 24px 24px 24px 26px;font-size: 20px;">Logout</a>
+</li></ul>
+      </div>
+      <div class="u-custom-menu u-nav-container-collapse">
+        <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+          <div class="u-inner-container-layout u-sidenav-overflow">
+            <div class="u-menu-close"></div>
+            <ul class="u-align-center u-nav u-popupmenu-items u-text-active-palette-3-base u-text-hover-palette-3-light-2 u-unstyled u-nav-2">
+              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('greeter') }}" onclick="showLoadingOverlay()">Home</a>
+            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('generateInvoicePage') }}" onclick="showLoadingOverlay()">Generate Invoice</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('itemsPage') }}" onclick="showLoadingOverlay()">Items</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('viewInvoicePage') }}" onclick="showLoadingOverlay()">View Invoice</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('Logout') }}">Logout</a>
+            </li></ul>
+          </div>
+        </div>
+        <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+      </div>
+      </div>
+    </nav>
+    <h4 class="u-text u-text-custom-color-4 u-text-1">Sree Venkateswara Textiles & Chemicals</h4>
+    </div>
+  </header>
+
+  <section class="u-clearfix u-section-1" id="sec-cd97" style="margin-bottom: 0px; padding-bottom: 2px;">
+    <div class="u-clearfix u-sheet u-sheet-1" style="margin-bottom: 0px; padding-bottom: 2px;">
+      <h2 class="u-subtitle u-text u-text-custom-color-6 u-text-1">Search Consignee</h2>
+      <div class="u-expanded-width u-form u-white u-form-1" style="margin-bottom: 2px;">
+
+        <form action="/searchConsignee" method="POST" class="u-clearfix u-form-spacing-32 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;"
+            data-consignee-names="{{ consignee_names}}">
+          <input type="hidden" name="csrf_token" value = "{{ csrf_token() }}" />
+          <div class="u-form-group u-form-partition-factor-2 u-label-top">
+            <label for="PMnumber-bb9b" class="u-label">Search Type</label>
+            <select id="searchType" name="searchType" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="required">
+              <option value="Consignee Name" {{ 'selected' if searchType == 'Consignee Name' else '' }}>Consignee Name</option>
+            </select>
+          </div>
+          <div class="u-form-group u-form-name u-form-partition-factor-2 u-label-top">
+            <label for="searchTerm" class="u-label">Search Term</label>
+            <div class="autocomplete-wrapper" style="position: relative;">
+              <input type="text" placeholder="Enter search term" id="searchTerm" name="searchTerm" value="{{ searchTerm if searchTerm else '' }}"
+                    class="u-border-1 u-border-grey-75 u-input u-input-rectangle u-text-grey-60" autocomplete="off">
+              <ul id="suggestions" class="autocomplete-list" style="position: absolute; top: 100%; left: 0; width: 100%; display: none; z-index: 1000;"></ul>
+            </div>
+          </div>
+      <div class="u-form-group u-form-submit u-label-top" style="text-align: center;">
+          <!-- Search Button -->
+          <button
+              type="submit"
+              name="buttonsub"
+              value="search"
+              class="styled-button"
+              style="background-color: #15155f; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">
+              Search
+          </button>
+          <button
+              type="button"
+              class="styled-button"
+              onclick="window.location.href='/consigneePage'"
+              style="background-color: #15155f; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">
+              Clear
+          </button>
+      </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+    <form id="itemForm" action="/submit_consignee" method="POST">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+      <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%;">
+        <h3 class="u-subtitle u-text u-text-7">Add New Consignee</h3>
+          <table id="itemsContainer" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" style="width: 80%; border-collapse: collapse;">
+              <thead>
+                  <tr>
+                      <th class="u-label" style="border-bottom: 1px solid #ddd; padding: 6px; text-align: left; width: 20%;">Consignee Name</th>
+                      <th class="u-label" style="border-bottom: 1px solid #ddd; padding: 6px; text-align: left; width: 20%;">GSTIN</th>
+                      <th class="u-label" style="border-bottom: 1px solid #ddd; padding: 6px; text-align: left; width: 30%;">Address</th>
+                      <th class="u-label" style="border-bottom: 1px solid #ddd; padding: 6px; text-align: left; width: 15%;">State</th>
+                      <th class="u-label" style="border-bottom: 1px solid #ddd; padding: 6px; text-align: left; width: 10%;">State Code</th>
+                      
+                    </tr>
+              </thead>
+              <tbody>
+                  <tr class="item-entry">
+                      <!-- Item Name: Max length 30 characters -->
+                      <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 20%;">
+                          <input type="text" placeholder="Consignee Name*" id="consignee_name" name="consignee_name" maxlength="30" pattern="^[A-Za-z0-9 ]*$" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required style="text-transform: uppercase">
+                          <small id="error-message" style="color: red; display: none;">Consignee already exists in the database</small>
+                      </td>
+                      <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 20%;">
+                        <input type="text" placeholder="Consignee GST No.*" id="gst_no" name="gst_no" pattern="^[A-Za-z0-9]{15}$" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required title="GST number must be exactly 15 characters" style="text-transform: uppercase">
+                      </td>
+                      <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 20%;">
+                        <input placeholder="Consignee Address*" id="address" name="address" maxlength="100" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required>
+                      </td>
+                      <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 20%;">
+                        <input
+                                list="states"
+                                id="state"
+                                name="state"
+                                class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+                                value="Tamil Nadu"
+                                required style="text-transform: uppercase"
+                            >
+                            <datalist id="states">
+                                <option value="Andhra Pradesh"></option>
+                                <option value="Arunachal Pradesh"></option>
+                                <option value="Assam"></option>
+                                <option value="Bihar"></option>
+                                <option value="Chhattisgarh"></option>
+                                <option value="Goa"></option>
+                                <option value="Gujarat"></option>
+                                <option value="Haryana"></option>
+                                <option value="Himachal Pradesh"></option>
+                                <option value="Jharkhand"></option>
+                                <option value="Karnataka"></option>
+                                <option value="Kerala"></option>
+                                <option value="Madhya Pradesh"></option>
+                                <option value="Maharashtra"></option>
+                                <option value="Manipur"></option>
+                                <option value="Meghalaya"></option>
+                                <option value="Mizoram"></option>
+                                <option value="Nagaland"></option>
+                                <option value="Odisha"></option>
+                                <option value="Punjab"></option>
+                                <option value="Rajasthan"></option>
+                                <option value="Sikkim"></option>
+                                <option value="Tamil Nadu"></option>
+                                <option value="Telangana"></option>
+                                <option value="Tripura"></option>
+                                <option value="Uttar Pradesh"></option>
+                                <option value="Uttarakhand"></option>
+                                <option value="West Bengal"></option>
+                                <option value="Andaman and Nicobar Islands"></option>
+                                <option value="Chandigarh"></option>
+                                <option value="Dadra and Nagar Haveli and Daman and Diu"></option>
+                                <option value="Delhi"></option>
+                                <option value="Jammu and Kashmir"></option>
+                                <option value="Ladakh"></option>
+                                <option value="Lakshadweep"></option>
+                                <option value="Puducherry"></option>
+                            </datalist>
+                      </td>
+                      <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                        <input type="text" placeholder="Code*" id="code" name="code" maxlength="50" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required>
+                      </td>
+                  </tr>
+              </tbody>
+              <tfoot>
+                <td>
+                <div class="u-form-group u-form-submit u-label-top" style="display: inline-block; margin-top: 10px;">
+                  <button type="button" id="addItemButton" onclick="addItem()" style="display: inline-block; margin-right: 10px;">
+                    Add Consignee
+                  </button>
+                </div>
+              </td>
+              </tfoot>
+          </table>
+
+          <!-- Buttons -->
+          <div class="u-form-group u-form-submit u-label-top" style="display: inline-block; margin-top: 20px;">
+            <button type="submit" id="submitButton" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-6 u-btn-1" style="display: inline-block;">
+              Save Consignee
+            </button>
+          </div>
+      </div>
+    </form>
+
+    <section class="u-align-center u-clearfix u-section-2" id="sec-72de" style="margin-bottom: 50px; margin-top: 0px;">
+      <div class="u-sheet">
+        <h2 class="u-text u-text-custom-color-6">List Of Consignees</h2>
+        <div class="u-table u-table-responsive">
+          <table class="u-table-entity">
+            <colgroup>
+              <col width="5%">
+              <col width="10%">
+              <col width="10%">
+              <col width="10%">
+              <col width="10%">
+              <col width="10%">
+              <col width="10%">
+              <!-- <col width="5%"> -->
+            </colgroup>
+            <thead class="u-table-header">
+              <tr>
+                <th>SNo.</th>
+                <th>Consignee Name</th>
+                <th>GSTIN</th>
+                <th>Address</th>
+                <th>State</th>
+                <th>State Code</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="suppTableBody">
+              {% for record in data %}
+                  <tr>
+                      <!-- <td>{{ (current_page - 1) * per_page + loop.index }}</td> -->
+                       <td>{{record.consignee_id}}</td>
+                      <td>
+                          <span id="consigneeNameText_{{ record.consignee_id }}">{{ record.consignee_name[:20] }}{% if record.consignee_name|length > 20 %}...{% endif %}</span>
+                          <small id="message_{{ record.consignee_id }}" style="color: red; font-weight: bold;"></small>
+                          <input type="text" id="consigneeNameInput_{{ record.consignee_id }}" value="{{ record.consignee_name }}" style="display: none;" required style="text-transform: uppercase">
+                      </td>
+                      <td>
+                        <span id="gst_noText_{{ record.consignee_id }}">{{ record.gst_no }}</span>
+                        <small id="message_{{ record.consignee_id }}" style="color: red; font-weight: bold;"></small>
+                        <input type="text" id="gst_noInput_{{ record.consignee_id }}" value="{{ record.gst_no }}" style="display: none;" required style="text-transform: uppercase">
+                      </td>
+                      <td>
+                        <span id="addressText_{{ record.consignee_id }}">{{ record.address[:20] }}{% if record.address|length > 20 %}...{% endif %}</span>
+                        
+                        <small id="message_{{ record.consignee_id }}" style="color: red; font-weight: bold;"></small>
+                        <input type="text" id="addressInput_{{ record.consignee_id }}" value="{{ record.address }}" style="display: none;" required style="text-transform: uppercase">
+                      </td>
+                      <td>
+                        <span id="stateText_{{ record.consignee_id }}">{{ record.state }}</span>
+                        <small id="message_{{ record.consignee_id }}" style="color: red; font-weight: bold;"></small>
+                        <!-- <input type="text" id="stateInput_{{ record.consignee_id }}" value="{{ record.state }}" style="display: none;width: 120px;" required> -->
+                        <input
+                                list="states"
+                                id="stateInput_{{ record.consignee_id }}" value="{{ record.state }}" style="display: none;width: 120px;background-color: white; height: 35px;"
+                                class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+                                value="Tamil Nadu"
+                                required style="text-transform: uppercase"
+                            >
+                            <datalist id="states">
+                                <option value="Andhra Pradesh"></option>
+                                <option value="Arunachal Pradesh"></option>
+                                <option value="Assam"></option>
+                                <option value="Bihar"></option>
+                                <option value="Chhattisgarh"></option>
+                                <option value="Goa"></option>
+                                <option value="Gujarat"></option>
+                                <option value="Haryana"></option>
+                                <option value="Himachal Pradesh"></option>
+                                <option value="Jharkhand"></option>
+                                <option value="Karnataka"></option>
+                                <option value="Kerala"></option>
+                                <option value="Madhya Pradesh"></option>
+                                <option value="Maharashtra"></option>
+                                <option value="Manipur"></option>
+                                <option value="Meghalaya"></option>
+                                <option value="Mizoram"></option>
+                                <option value="Nagaland"></option>
+                                <option value="Odisha"></option>
+                                <option value="Punjab"></option>
+                                <option value="Rajasthan"></option>
+                                <option value="Sikkim"></option>
+                                <option value="Tamil Nadu"></option>
+                                <option value="Telangana"></option>
+                                <option value="Tripura"></option>
+                                <option value="Uttar Pradesh"></option>
+                                <option value="Uttarakhand"></option>
+                                <option value="West Bengal"></option>
+                                <option value="Andaman and Nicobar Islands"></option>
+                                <option value="Chandigarh"></option>
+                                <option value="Dadra and Nagar Haveli and Daman and Diu"></option>
+                                <option value="Delhi"></option>
+                                <option value="Jammu and Kashmir"></option>
+                                <option value="Ladakh"></option>
+                                <option value="Lakshadweep"></option>
+                                <option value="Puducherry"></option>
+                            </datalist>
+                      </td>
+                      <td>
+                        <span id="codeText_{{ record.consignee_id }}">{{ record.code }}</span>
+                        <small id="message_{{ record.consignee_id }}" style="color: red; font-weight: bold;"></small>
+                        <input type="text" id="codeInput_{{ record.consignee_id }}" value="{{ record.code }}" style="display: none; width: 60px;" required>
+                      </td>
+                      <!-- <td>
+                        {{ record.username }}
+                      </td> -->
+
+                      <td>
+                          <button type="button" id="NameChangeBtn_{{ record.consignee_id }}" style="display: none; font-size: 12px; padding: 6px 10px;" onclick="NameChange(`{{ record.consignee_id }}`)">Save</button>
+                          <button type="button" id="removeBtn_{{ record.consignee_id }}" style="display: none; background-color: #8B0000; font-size: 12px; padding: 6px 10px;" onclick="popUpPo(this,'{{ record.consignee_id }}')">Remove</button>
+                          <button type="button" id="editLimitBtn_{{ record.consignee_id }}" onclick="enableInput(`{{ record.consignee_id }}`)">Edit</button>
+                      </td>
+                  </tr>
+              {% endfor %}
+          </tbody>
+
+          </table>
+        </div>
+      </div>
+      <div class="pagination">
+        <!-- Previous Button -->
+        {% if current_page > 1 %}
+        <a href="/consigneePage?page={{ current_page - 1 }}" class="pagination-button">Previous</a>
+        {% endif %}
+
+        <!-- Page Number Buttons -->
+        {% for button in range(1, total_pages + 1) %}
+        <a href="/consigneePage?page={{ button }}" class="pagination-button {% if button == current_page %}active{% endif %}">
+            {{ button }}
+        </a>
+        {% endfor %}
+
+        <!-- Next Button -->
+        {% if current_page < total_pages %}
+        <a href="/itemsPage?page={{ current_page + 1 }}" class="pagination-button">Next</a>
+        {% endif %}
+    </div>
+
+
+  </section>
+
+  <!-- Background Overlay -->
+  <div id="Overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(211, 211, 211, 0.8); z-index: 999;"></div>
+
+  <div id="removeItemModel" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 15px; border-radius: 12px; border: 1px solid #ccc; box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); font-family: 'Arial', sans-serif; max-width: 400px; width: 90%; z-index: 1000;">
+      <p style="color: #555; text-align: center; margin-bottom: 20px; font-size: 14px;">Do you want to Remove this Consignee?</p>
+      <div style="display: flex; justify-content: center; gap: 15px;">
+          <button type="button" onclick="removeItem()"
+          style="background-color: #15155f; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; font-size: 14px;">Yes</button>
+          <button type="button" onclick="closePo()"
+          style="background-color: #8B0000; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; font-size: 14px;">No</button>
+      </div>
+  </div>
+  <!-- Loading overlay -->
+  <div id="loadingOverlay">
+    <span>Loading...</span>
+  </div>
+
+    <footer style="background-color: #333; color: #fff; width: 100%; padding: 20px 0; position: relative;">
+      <div style="text-align: center; max-width: 1500px; margin: 0 auto; font-size: 14px;">
+          <p>© Copyright 2024: SWAR Technologies</p>
+      </div>
+    </footer>
+
+</body>
+<script>
+
+    // Function to show the loading overlay
+        function showLoadingOverlay() {
+            const loadingOverlay = document.getElementById("loadingOverlay");
+            loadingOverlay.style.display = "flex";
+        }
+
+        // Event listener to hide the loading overlay after the page has loaded
+        window.addEventListener("load", function () {
+            const loadingOverlay = document.getElementById("loadingOverlay");
+            loadingOverlay.style.display = "none";
+        });
+
+  // JavaScript to show loading overlay on form submit
+  const form = document.getElementById("itemForm");
+        const loadingOverlay = document.getElementById("loadingOverlay");
+
+        form.addEventListener("submit", function (event) {
+            // Show the loading overlay
+            loadingOverlay.style.display = "flex";
+        });
+
+  let rowCount = 0;
+
+   // Function to update button text based on rowCount
+   function updateButtonText() {
+      const button = document.getElementById('submitButton');
+      if (rowCount > 0) {
+        button.textContent = 'Save Consignees';
+      } else {
+        button.textContent = 'Save Consignee';
+      }
+    }
+
+    // Call the function initially
+    updateButtonText();
+
+    // Example: Changing rowCount dynamically (for testing)
+    document.addEventListener('click', () => {
+      updateButtonText();
+    });
+
+  // alert("Items");
+
+  function popUpPo(button, itemId) {
+            const customMessage = "Please fill all the fields before generating Purchase order.";
+
+            // Store the button and itemId globally or locally in a closure for use in removeItem
+            currentButton = button; // Using global for simplicity
+            currentItemId = itemId;
+
+            // Get the modal element
+            document.getElementById('Overlay').style.display = 'block';
+            document.getElementById("removeItemModel").style.display = 'block';
+
+        }
+
+        function closePo() {
+            document.getElementById('Overlay').style.display = 'none';
+            document.getElementById("removeItemModel").style.display = "none";
+
+        }
+
+  // Enable the input field for a specific item
+  function enableInput(itemId) {
+    const consigneeNameText = document.getElementById(`consigneeNameText_${itemId}`);
+    const consigneeNameInput = document.getElementById(`consigneeNameInput_${itemId}`);
+    const gst_noText = document.getElementById(`gst_noText_${itemId}`);
+    const gst_noInput = document.getElementById(`gst_noInput_${itemId}`);
+    const addressText = document.getElementById(`addressText_${itemId}`);
+    const addressInput = document.getElementById(`addressInput_${itemId}`);
+    const stateText = document.getElementById(`stateText_${itemId}`);
+    const stateInput = document.getElementById(`stateInput_${itemId}`);
+    const codeText = document.getElementById(`codeText_${itemId}`);
+    const codeInput = document.getElementById(`codeInput_${itemId}`);
+
+    const nameChangeBtn = document.getElementById(`NameChangeBtn_${itemId}`);
+    const removeBtn = document.getElementById(`removeBtn_${itemId}`);
+    const editLimitBtn = document.getElementById(`editLimitBtn_${itemId}`);
+
+    // Check if elements exist before modifying
+    if (consigneeNameText && consigneeNameInput && nameChangeBtn && editLimitBtn && removeBtn) {
+        consigneeNameText.style.display = 'none';  // Hide the text element
+        consigneeNameInput.style.display = 'inline';  // Show the input field
+        gst_noText.style.display = 'none';  // Hide the text element
+        gst_noInput.style.display = 'inline';  // Show the input field
+        addressText.style.display = 'none';  // Hide the text element
+        addressInput.style.display = 'inline';  // Show the input field
+        stateText.style.display = 'none';  // Hide the text element
+        stateInput.style.display = 'inline';  // Show the input field
+        codeText.style.display = 'none';  // Hide the text element
+        codeInput.style.display = 'inline';  // Show the input field
+        nameChangeBtn.style.display = 'inline-block';  // Show the Done button
+        removeBtn.style.display = 'inline-block';  // Show the Done button
+        editLimitBtn.style.display = 'none';  // Hide the Edit button
+    } else {
+        console.error('One or more elements not found');
+    }
+}
+
+function NameChange(itemId) {
+    const csrfToken = document.querySelector('input[name="csrf_token"]').value;  // Get CSRF token
+
+    // Retrieve the updated item_name from the input field for the specific item
+    // const itemName = document.getElementById(`itemNameInput_${itemId}`).value;
+    const consigneeName = document.getElementById(`consigneeNameInput_${itemId}`).value;
+    const gst_no = document.getElementById(`gst_noInput_${itemId}`).value;
+    const address = document.getElementById(`addressInput_${itemId}`).value;
+    const state = document.getElementById(`stateInput_${itemId}`).value;
+    const code = document.getElementById(`codeInput_${itemId}`).value;
+
+    // const customMessage = "Please fill Item Name correctly before Saving";
+    // if (!validate(customMessage,itemId)) {
+    //       return; // Exit if validation fails
+    //   }
+
+    const button = document.getElementById(`NameChangeBtn_${itemId}`);
+    button.innerHTML = "Saving...";
+    button.disabled = true;
+
+    // Send a POST request to the backend to update the item_name
+    fetch('/updateConsignee', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken  // Include CSRF token in headers
+        },
+        body: JSON.stringify({
+            consigneeName: consigneeName,
+            gst_no:gst_no,
+            address:address,
+            state:state,
+            code:code,
+            consignee_id: itemId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Item Name updated successfully');
+            // Disable input after update and hide the Done button
+            // document.getElementById(`NameChangeBtn_${itemId}`).style.display = 'none';
+            // document.getElementById(`editLimitBtn_${itemId}`).style.display = 'inline-block';
+            window.location.href = '/consigneePage';  // Redirect back to items page after success
+        } else {
+            console.error('Error updating Item Name');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function removeItem() {
+
+    const button = currentButton; // Retrieve stored button
+    const itemId = currentItemId; // Retrieve stored item ID
+    console.log('Starting to send fetch request...');
+    // Locate the parent row
+    const row = button.parentElement.parentElement;
+
+    // CSRF token for backend request (if needed)
+    const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+
+    // Send a POST request to the backend
+    fetch('/removeConsignee', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken || ''
+        },
+        body: JSON.stringify({ itemId: itemId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            row.remove(); // Remove the row from the UI
+            window.location.href = '/consigneePage';  // Redirect back to items page after success
+            // alert('Item removed successfully!');
+        } else {
+            console.error('Failed to remove item:', data.message);
+            // alert('Failed to remove item. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error removing item:', error);
+        // alert('An error occurred. Please try again.');
+    });
+    // Close the popup after removing the item
+    closePo();
+}
+
+        // function handleFormSubmit(event) {
+        //     const customMessage = "Please fill all the fields before submitting the form.";
+        //     if (!validate(customMessage)) {
+        //         event.preventDefault(); // Prevent form submission
+        //     }
+        // }
+        // document.getElementById('item_name').addEventListener('blur', async () => {
+        //     const csrfToken = document.querySelector('input[name="csrf_token"]').value; // Get CSRF token
+        //     const input = document.getElementById('item_name');
+        //     const errorMessage = document.getElementById('error-message');
+
+        //     if (input.value.trim() === '') {
+        //         errorMessage.style.display = 'none';
+        //         return;
+        //     }
+
+        //     try {
+        //         // Send a POST request to check for duplicate item names
+        //         const response = await fetch('/check_item_name', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 'X-CSRFToken': csrfToken // Include CSRF token in headers
+        //             },
+        //             body: JSON.stringify({ item_name: input.value.trim() }),
+        //         });
+
+        //         const result = await response.json();
+
+        //         if (result.duplicate) {
+        //             // If duplicate is found, show the error message
+        //             errorMessage.textContent = `Item "${result.item_name}" already exists in the database`;
+        //             errorMessage.style.display = 'block';
+        //         } else {
+        //             // Hide the error message if no duplicate is found
+        //             errorMessage.style.display = 'none';
+        //         }
+        //     } catch (error) {
+        //         console.error('Error checking item name:', error);
+        //     }
+        // });
+
+        // function validate(customMessage,itemId) {
+        //     const itemNameInput = document.getElementById(`itemNameInput_${itemId}`); // Get the input field by ID
+        //     const messageElement = document.getElementById(`message_${itemId}`); // Get the message element
+
+        //     // Check if the input field exists
+        //     if (!itemNameInput) {
+        //         console.error("Item name input field not found.");
+        //         messageElement.textContent = "Item name input field is missing.";
+        //         messageElement.style.display = 'none';
+        //         return false; // Exit validation
+        //     }
+
+        //     // Validate the value of the input field
+        //     if (!itemNameInput.value.trim()) {
+        //         console.error("Item name is empty.");
+        //         messageElement.style.display = 'block';
+        //         messageElement.textContent = customMessage; // Display the custom error message
+        //         return false; // Exit validation if the field is empty
+        //     }
+
+        //     // Clear the error message if the field is valid
+        //     messageElement.textContent = "";
+        //     return true; // Return true if validation passes
+        // }
+
+
+        function addItem() {
+
+            const container = document.getElementById("itemsContainer");
+            const row = document.createElement("tr");
+            row.classList.add("item-entry");
+
+            row.innerHTML = `
+                <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 20%;">
+                          <input type="text" placeholder="Consignee Name*" id="consignee_name" name="consignee_name" maxlength="30" pattern="^[A-Za-z0-9 ]*$" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required>
+                          <small id="error-message" style="color: red; display: none;">Consignee already exists in the database</small>
+                      </td>
+                      <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 20%;">
+                        <input type="text" placeholder="Consignee GST No.*" id="gst_no" name="gst_no" pattern="^[A-Za-z0-9]{15}$" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required title="GST number must be exactly 15 characters">
+                      </td>
+                      <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 20%;">
+                        <input placeholder="Consignee Address*" id="address" name="address" maxlength="100" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required>
+                      </td>
+                      <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 20%;">
+                        <input
+                                list="states"
+                                id="state"
+                                name="state"
+                                class="u-border-1 u-border-grey-30 u-input u-input-rectangle"
+                                value="Tamil Nadu"
+                                required
+                            >
+                            <datalist id="states">
+                                <option value="Andhra Pradesh"></option>
+                                <option value="Arunachal Pradesh"></option>
+                                <option value="Assam"></option>
+                                <option value="Bihar"></option>
+                                <option value="Chhattisgarh"></option>
+                                <option value="Goa"></option>
+                                <option value="Gujarat"></option>
+                                <option value="Haryana"></option>
+                                <option value="Himachal Pradesh"></option>
+                                <option value="Jharkhand"></option>
+                                <option value="Karnataka"></option>
+                                <option value="Kerala"></option>
+                                <option value="Madhya Pradesh"></option>
+                                <option value="Maharashtra"></option>
+                                <option value="Manipur"></option>
+                                <option value="Meghalaya"></option>
+                                <option value="Mizoram"></option>
+                                <option value="Nagaland"></option>
+                                <option value="Odisha"></option>
+                                <option value="Punjab"></option>
+                                <option value="Rajasthan"></option>
+                                <option value="Sikkim"></option>
+                                <option value="Tamil Nadu"></option>
+                                <option value="Telangana"></option>
+                                <option value="Tripura"></option>
+                                <option value="Uttar Pradesh"></option>
+                                <option value="Uttarakhand"></option>
+                                <option value="West Bengal"></option>
+                                <option value="Andaman and Nicobar Islands"></option>
+                                <option value="Chandigarh"></option>
+                                <option value="Dadra and Nagar Haveli and Daman and Diu"></option>
+                                <option value="Delhi"></option>
+                                <option value="Jammu and Kashmir"></option>
+                                <option value="Ladakh"></option>
+                                <option value="Lakshadweep"></option>
+                                <option value="Puducherry"></option>
+                            </datalist>
+                      </td>
+                      <td class="u-form-group u-form-name u-label-none" style="padding: 6px; width: 10%;">
+                        <input type="text" placeholder="Code*" id="code" name="code" maxlength="50" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required>
+                      </td>
+                    <td style="padding: 6px; width: 10%;">
+                      <button type="button" onclick="remove(this)" style="background-color: #8B0000; color: white; border: none; padding: 5px 10px; cursor: pointer;">
+                          Remove
+                      </button>
+                    </td>
+            `;
+            container.appendChild(row);
+        }
+
+        function remove(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+        }
+  // alert("hu");
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchTermInput = document.getElementById('searchTerm');
+    const suggestionsList = document.getElementById('suggestions');
+
+    // Retrieve supplier names and item names, ensuring distinct values
+    const itemNames = [...new Set(
+      document.querySelector('form').getAttribute('data-consignee-names')
+        .replace(/^[\[\{]|[\]\}]$/g, '') // Remove square brackets and curly braces at the start and end of the string
+        .split(',') // Split by commas to get individual names
+        .map(name => name.replace(/['"]+/g, '').trim()) // Trim spaces if there are any around the items
+    )];
+
+    console.log("ItemsName---"+itemNames);
+
+
+          searchTermInput.addEventListener('input', () => {
+            const query = searchTermInput.value.toLowerCase();
+            suggestionsList.innerHTML = ''; // Clear previous suggestions
+
+            if (query.length >= 1) { // Filter only after 1 characters
+              // Check the selected search type
+              const searchType = document.getElementById('searchType').value;
+              let suggestions = [];
+
+              if (searchType === 'Consignee Name') {
+                  suggestions = itemNames.filter(name =>
+                  name.toLowerCase().includes(query)
+                );
+              }
+              if (suggestions.length > 0) {
+                suggestionsList.style.display = 'block'; // Show suggestions
+                suggestions.forEach(suggestion => {
+                  const li = document.createElement('li');
+                  li.textContent = suggestion;
+                  li.className = 'autocomplete-item';
+                  li.addEventListener('click', () => {
+                    searchTermInput.value = suggestion; // Set input value
+                    suggestionsList.innerHTML = '';  // Clear suggestions
+                    suggestionsList.style.display = 'none'; // Hide suggestions
+                  });
+                  suggestionsList.appendChild(li);
+                });
+              } else {
+                suggestionsList.style.display = 'none'; // Hide suggestions if none match
+              }
+            } else {
+              suggestionsList.style.display = 'none'; // Hide suggestions for fewer than 2 characters
+            }
+          });
+
+          // Hide suggestions on outside click
+          document.addEventListener('click', (e) => {
+            if (!suggestionsList.contains(e.target) && e.target !== searchTermInput) {
+              suggestionsList.innerHTML = '';
+              suggestionsList.style.display = 'none';
+            }
+          });
+        });
+
+        function submitFilterForm() {
+          const searchType = document.getElementById("searchType").value;
+          document.getElementById("filterForm").submit();
+        }
+
+</script>
+
+</html>

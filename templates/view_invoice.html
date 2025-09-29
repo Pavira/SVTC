@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="List Of Products">
+    <meta name="description" content="">
+    <title>Invoice Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nicepage.css')}}" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Patient-Details.css')}}" media="screen">
+    <!-- <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/jquery.js')}}" defer=""></script> -->
+    <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='js/nicepage.js')}}" defer=""></script>
+
+    <link href="//code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+    <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+    <meta name="generator" content="Nicepage 5.1.5, nicepage.com">
+    <meta name="referrer" content="origin">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+    }
+  </script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Product Details">
+    <meta property="og:type" content="website">
+  </head>
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+
+    .u-text {
+      color: #111010;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .u-section-1,
+    .u-section-2 {
+      margin: 0;
+      padding: 20px;
+    }
+
+    .u-table {
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      max-height: 100%; /* Adjust the height as needed */
+    }
+
+    .u-table-entity {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .u-table-header th {
+      background-color: #15155f;
+      color: #fff;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .u-table-entity td,
+    .u-table-entity th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    button {
+      background-color: #15155f;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #002e60;
+    }
+
+    .u-table-entity tr:nth-child(odd) {
+      background-color: #ffffff; /* White for odd rows */
+    }
+
+    .u-table-entity tr:nth-child(even) {
+      background-color: #f2f2f2; /* Light gray for even rows */
+    }
+
+    .u-table-entity tr:hover {
+      background-color: #ddd; /* Darker gray for hover */
+    }
+
+    form {
+      display: inline;
+    }
+
+    .pagination-button {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f2f2f2; /* Light gray */
+        color: #333;
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .pagination-button:hover {
+        background-color: #e0e0e0; /* Slightly darker gray for hover */
+    }
+
+    .pagination-button.active {
+        background-color: #d6d6d6; /* A darker gray for active button */
+        font-weight: bold;
+    }
+    .autocomplete-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      max-height: 150px;
+      overflow-y: auto;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .autocomplete-list li {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .autocomplete-list li:hover {
+      background-color: #f0f0f0;
+    }
+
+    .autocomplete-wrapper {
+      position: relative;
+    }
+
+     /* Hover and Active Effects */
+     .styled-button:hover {
+        background-color: #15155f; /* Slightly lighter shade for hover */
+        transform: translateY(-2px); /* Lift button slightly */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+    }
+
+    .styled-button:active {
+        background-color: #10104a; /* Darker shade for active state */
+        transform: translateY(0); /* Reset movement */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    }
+    button[type="button"] {
+        background-color: #15155f; /* Default background color */
+        color: white; /* Default text color */
+        border: none; /* Remove border */
+        padding: 12px 25px; /* Button padding */
+        border-radius: 8px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor */
+        font-weight: 600; /* Bold text */
+        font-size: 14px; /* Font size */
+        transition: all 0.3s ease; /* Smooth transition */
+      }
+
+      button[type="button"]:hover {
+          background-color: #1d1d80; /* Slightly darker shade for hover */
+          color: #f0f0f0; /* Slightly lighter text color */
+          transform: translateY(-2px); /* Move the button upwards slightly */
+          box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Add a shadow */
+      }
+
+      button[type="button"]:active {
+          background-color: #10104a; /* Darker shade for active state */
+          transform: translateY(0); /* Reset movement */
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+      }
+
+      button[type="submit"] {
+        background-color: #15155f; /* Default background color */
+        color: white; /* Default text color */
+        border: none; /* Remove border */
+        padding: 12px 25px; /* Button padding */
+        border-radius: 8px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor */
+        font-weight: 600; /* Bold text */
+        font-size: 14px; /* Font size */
+        transition: all 0.3s ease; /* Smooth transition */
+      }
+
+      button[type="submit"]:hover {
+          background-color: #1d1d80; /* Slightly darker shade for hover */
+          color: #f0f0f0; /* Slightly lighter text color */
+          transform: translateY(-2px); /* Move the button upwards slightly */
+          box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Add a shadow */
+      }
+
+      button[type="submit"]:active {
+          background-color: #10104a; /* Darker shade for active state */
+          transform: translateY(0); /* Reset movement */
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+      }
+      /* Gray overlay */
+    #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        /* Loading text */
+        #loadingOverlay span {
+            font-size: 2rem;
+            color: white;
+        }
+
+  </style>
+
+<body class="u-body u-xl-mode" data-lang="en">
+  <header class="u-box-shadow u-clearfix u-custom-color-7 u-header u-header" id="sec-7d85">
+    <div class="u-clearfix u-sheet u-sheet-1">
+    <nav class="u-menu u-menu-one-level u-offcanvas u-menu-1"style="margin-left: 450px;">
+      <div class="menu-collapse" style="font-size: 1.5rem; letter-spacing: 0px; font-weight: 700;">
+        <a class="u-button-style u-custom-border u-custom-border-color u-custom-borders u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+          <svg class="u-svg-link" viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+          <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect></g></svg>
+        </a>
+      </div>
+      <div class="u-custom-menu u-nav-container">
+        <ul class="u-nav u-spacing u-unstyled u-nav-1">
+            <li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('greeter') }}" onclick="showLoadingOverlay()" style="padding: 24px 24px 24px 26px;font-size: 20px;">Home</a></li>
+            <li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('generateInvoicePage') }}" onclick="showLoadingOverlay()" style="padding: 24px 24px 24px 26px;font-size: 20px;">Generate Invoice</a></li>
+            <li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('itemsPage') }}" onclick="showLoadingOverlay()" style="padding: 24px 24px 24px 26px;font-size: 20px;">Items</a></li>
+            <li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('consigneePage') }}" onclick="showLoadingOverlay()" style="padding: 24px 24px 24px 26px;font-size: 20px;">Consignee</a></li>
+</li><li class="u-nav-item"><a class="u-border-no-bottom u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-6 u-text-custom-color-4 u-text-hover-palette-2-base" href="{{ url_for('Logout') }}" style="padding: 24px 24px 24px 26px;font-size: 20px;">Logout</a>
+        </ul>
+      </div>
+      <div class="u-custom-menu u-nav-container-collapse">
+        <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+          <div class="u-inner-container-layout u-sidenav-overflow">
+            <div class="u-menu-close"></div>
+            <ul class="u-align-center u-nav u-popupmenu-items u-text-active-palette-3-base u-text-hover-palette-3-light-2 u-unstyled u-nav-2">
+              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('greeter') }}" onclick="showLoadingOverlay()">Home</a>
+              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('generateInvoicePage') }}" onclick="showLoadingOverlay()">Generate Invoice</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('itemsPage') }}" onclick="showLoadingOverlay()">Items</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('consigneePage') }}" onclick="showLoadingOverlay()">Consignee</a>
+            </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('Logout') }}">Logout</a>
+            </li></ul>
+          </div>
+        </div>
+        <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+      </div>
+      </div>
+    </nav>
+    <h4 class="u-text u-text-custom-color-4 u-text-1">Sree Venkateswara Textiles & Chemicals</h4>
+    </div>
+  </header>
+    <section class="u-clearfix u-section-1" id="sec-cd97" style="margin-bottom: 0px;">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-subtitle u-text u-text-custom-color-6 u-text-1">Search Invoice</h2>
+        <!-- <div style="display: flex; justify-content: flex-end; padding: 10px;">
+          <button type="button" onclick="window.location.href='/registerSupplierPage';">
+            ADD NEW SUPPLIER
+          </button>
+        </div> -->
+        <div class="u-expanded-width u-form u-white u-form-1">
+          <form action="/searchInvoiceConsignee" method="POST" class="u-clearfix u-form-spacing-32 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;"
+              data-consignee-names="{{ consignee_names}}">
+              <!-- data-supplier-names="{{ supplier_names }}"
+              data-supp-id="{{ supp_ids }}"
+              data-phone="{{ phone }}"
+              data-item-names="{{ itemNames}}" -->
+            <input type="hidden" name="csrf_token" value = "{{ csrf_token() }}"/>
+            <div class="u-form-group u-form-partition-factor-2 u-label-top">
+              <label for="PMnumber-bb9b" class="u-label">Search Type</label>
+              <select id="searchType" name="searchType" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="required">
+                <option value="Consignee Name" {{ 'selected' if searchType == 'Consignee Name' else '' }}>Consignee Name</option>
+                <!-- <option value="Supplier Name" {{ 'selected' if searchType == 'Supplier Name' else '' }}>Supplier Name</option>
+                <option value="Item Name" {{ 'selected' if searchType == 'Item Name' else '' }}>Item Name</option>
+                <option value="Supplier Phone No." {{ 'selected' if searchType == 'Supplier Phone No.' else '' }}>Supplier Phone No.</option> -->
+              </select>
+            </div>
+            <div class="u-form-group u-form-name u-form-partition-factor-2 u-label-top">
+              <label for="searchTerm" class="u-label">Search Term</label>
+              <div class="autocomplete-wrapper" style="position: relative;">
+                <input type="text" placeholder="Enter search term" id="searchTerm" name="searchTerm" value="{{ searchTerm if searchTerm else '' }}"
+                      class="u-border-1 u-border-grey-75 u-input u-input-rectangle u-text-grey-60" autocomplete="off">
+                <ul id="suggestions" class="autocomplete-list" style="position: absolute; top: 100%; left: 0; width: 100%; display: none; z-index: 1000;"></ul>
+              </div>
+            </div>
+        <div class="u-form-group u-form-submit u-label-top" style="text-align: center;">
+            <!-- Search Button -->
+            <button
+                type="submit"
+                name="buttonsub"
+                value="search"
+                class="styled-button"
+                style="background-color: #15155f; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">
+                Search
+            </button>
+            <!-- Clear Button -->
+            <button
+                type="button"
+                class="styled-button"
+                onclick="window.location.href='/viewInvoicePage'"
+                style="background-color: #15155f; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">
+                Clear
+            </button>
+        </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="u-align-center u-clearfix u-section-2" id="sec-72de" style="margin-bottom: 50px; margin-top: 0px;">
+      <div class="u-sheet">
+        <h2 class="u-text u-text-custom-color-6">List Of Invoice</h2>
+        <div class="u-table u-table-responsive">
+          <table class="u-table-entity">
+            <colgroup>
+              <!-- <col width="10%"> -->
+              <col width="10%">
+              <col width="10%">
+              <col width="10%">
+              <col width="10%">
+              <col width="10%">
+              <col width="10%">
+              <col width="10%">
+              <!-- <col width="10%"> -->
+            </colgroup>
+            <thead class="u-table-header">
+              <tr>
+                <!-- <th>SNo.</th> -->
+                <th>Invoice No</th>
+                <th>Invoice Date</th>
+                <th>Consignee Name</th>
+                <th>GSTIN</th>
+                <th>Purchase Order No</th>
+                <th>Purchase Order Date</th>
+                <th>Total Bill</th>
+                <!-- <th>GST No.</th>
+                <th>Address</th> -->
+              </tr>
+            </thead>
+            <tbody id="suppTableBody">
+              {% for record in supp_records %}
+                  <!-- <tr onclick="window.location.href='/update_supplierPage/{{ record.id }}'" style="cursor: pointer;"> -->
+                          <!-- <td>
+                            <input type="hidden" id="sno" name="sno" value="{{ record.sno }}">{{ record.sno }}
+                          </td> -->
+                        <tr>
+                          <td>
+                              <input type="hidden" id="invoice_no" name="invoice_no" value="{{ record.invoice_no }}">{{ record.invoice_no }}
+                          </td>
+                          <td>
+                            <input type="hidden" id="invoice_date" name="invoice_date" value="{{ record.invoice_date }}">{{ record.invoice_date }}
+                          </td>
+                          <td>
+                              <input type="hidden" name="consignee_name" value="{{ record.consignee_name }}">
+                              {{ record.consignee_name[:15] }}{% if record.consignee_name|length > 15 %}...{% endif %}
+                          </td>
+                          <td>
+                            <input type="hidden" id="gst_no" name="gst_no" value="{{ record.gst_no }}">{{ record.gst_no }}
+                          </td>
+                          <td>
+                            <input type="hidden" id="purchase_order_no" name="purchase_order_no" value="{{ record.purchase_order_no }}">{{ record.purchase_order_no }}
+                          </td>
+                          <td>
+                            <input type="hidden" id="purchase_order_date" name="purchase_order_date" value="{{ record.purchase_order_date }}">{{ record.purchase_order_date }}
+                          </td>
+                          <td>
+                            <input type="hidden" id="totalBill" name="totalBill" value="{{ record.totalBill }}">{{ record.totalBill }}
+                          </td>
+                        </tr>
+              {% endfor %}
+          </tbody>
+
+          </table>
+        </div>
+      </div>
+
+
+    <!-- Pagination for Search Results -->
+    {% if total_pages > 1 %}
+    <div class="pagination">
+        {% if current_page > 1 %}
+        <a href="/viewInvoicePage?page={{ current_page - 1 }}" class="pagination-button">Previous</a>
+        {% endif %}
+
+        {% for page in range(1, total_pages + 1) %}
+        <a href="/viewInvoicePage?page={{ page }}" class="pagination-button {% if page == current_page %}active{% endif %}">{{ page }}</a>
+        {% endfor %}
+
+        {% if current_page < total_pages %}
+        <a href="/viewInvoicePage?page={{ current_page + 1 }}" class="pagination-button">Next</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+  </section>
+  <!-- Loading overlay -->
+  <div id="loadingOverlay">
+    <span>Loading...</span>
+  </div>
+
+    <footer style="background-color: #333; color: #fff; width: 100%; padding: 20px 0; position: relative;">
+      <div style="text-align: center; max-width: 1500px; margin: 0 auto; font-size: 14px;">
+          <p>© Copyright 2024: SWAR Technologies</p>
+      </div>
+    </footer>
+
+</body>
+<script>
+
+    // Function to show the loading overlay
+        function showLoadingOverlay() {
+            const loadingOverlay = document.getElementById("loadingOverlay");
+            loadingOverlay.style.display = "flex";
+        }
+
+        // Event listener to hide the loading overlay after the page has loaded
+        window.addEventListener("load", function () {
+            const loadingOverlay = document.getElementById("loadingOverlay");
+            loadingOverlay.style.display = "none";
+        });
+
+
+  // alert("hu");
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchTermInput = document.getElementById('searchTerm');
+    const suggestionsList = document.getElementById('suggestions');
+
+    // Retrieve supplier names and item names, ensuring distinct values
+    const itemNames = [...new Set(
+      document.querySelector('form').getAttribute('data-consignee-names')
+        .replace(/^[\[\{]|[\]\}]$/g, '') // Remove square brackets and curly braces at the start and end of the string
+        .split(',') // Split by commas to get individual names
+        .map(name => name.replace(/['"]+/g, '').trim()) // Trim spaces if there are any around the items
+    )];
+
+    console.log("ItemsName---"+itemNames);
+
+
+          searchTermInput.addEventListener('input', () => {
+            const query = searchTermInput.value.toLowerCase();
+            suggestionsList.innerHTML = ''; // Clear previous suggestions
+
+            if (query.length >= 1) { // Filter only after 1 characters
+              // Check the selected search type
+              const searchType = document.getElementById('searchType').value;
+              let suggestions = [];
+
+              if (searchType === 'Consignee Name') {
+                  suggestions = itemNames.filter(name =>
+                  name.toLowerCase().includes(query)
+                );
+              }
+              if (suggestions.length > 0) {
+                suggestionsList.style.display = 'block'; // Show suggestions
+                suggestions.forEach(suggestion => {
+                  const li = document.createElement('li');
+                  li.textContent = suggestion;
+                  li.className = 'autocomplete-item';
+                  li.addEventListener('click', () => {
+                    searchTermInput.value = suggestion; // Set input value
+                    suggestionsList.innerHTML = '';  // Clear suggestions
+                    suggestionsList.style.display = 'none'; // Hide suggestions
+                  });
+                  suggestionsList.appendChild(li);
+                });
+              } else {
+                suggestionsList.style.display = 'none'; // Hide suggestions if none match
+              }
+            } else {
+              suggestionsList.style.display = 'none'; // Hide suggestions for fewer than 2 characters
+            }
+          });
+
+          // Hide suggestions on outside click
+          document.addEventListener('click', (e) => {
+            if (!suggestionsList.contains(e.target) && e.target !== searchTermInput) {
+              suggestionsList.innerHTML = '';
+              suggestionsList.style.display = 'none';
+            }
+          });
+        });
+
+        function submitFilterForm() {
+          const searchType = document.getElementById("searchType").value;
+          document.getElementById("filterForm").submit();
+        }
+
+
+
+  // document.addEventListener('DOMContentLoaded', () => {
+  //   const searchTermInput = document.getElementById('searchTerm');
+  //   const suggestionsList = document.getElementById('suggestions');
+
+  //   // Retrieve supplier names and item names, ensuring distinct values
+  //         const supplierNames = [...new Set(
+  //           document.querySelector('form').getAttribute('data-consignee-names')
+  //             .replace(/^\[|\]$/g, '')  // Remove square brackets at the start and end of the string
+  //             .split(',')  // Split by commas to get individual names
+  //             .map(name => name.replace(/['"]+/g, '').trim())  // Clean up the names (remove quotes and trim spaces)
+  //         )];
+  //         // const itemNames = [...new Set(
+  //         //   document.querySelector('form').getAttribute('data-item-names')
+  //         //   .replace(/^\[|\]$/g, '')  // Remove square brackets at the start and end of the string
+  //         //   .split(',')  // Split by commas to get individual names
+  //         //   .map(name => name.replace(/['"]+/g, '').trim()) // Trim spaces if there are any around the items
+  //         // )];
+  //         // console.log('Cleaned Item Names:', itemNames);
+  //         // const phone = [...new Set(
+  //         //   document.querySelector('form').getAttribute('data-phone')
+  //         //   .replace(/[\[\]']/g, '') // Remove brackets and single quotes
+  //         //   .split(',') // Split by space (or use ',' if items are comma-separated)
+  //         //   .map(user => user.trim()) // Trim spaces around each item
+  //         // )];
+  //         // const suppId = [...new Set(
+  //         //   document.querySelector('form').getAttribute('data-supp-id')
+  //         //   .replace(/[\[\]']/g, '') // Remove brackets and single quotes
+  //         //   .split(',') // Split by space (or use ',' if items are comma-separated)
+  //         //   .map(id => id.trim()) // Trim spaces around each item
+  //         // )];
+
+
+  //         searchTermInput.addEventListener('input', () => {
+  //           const query = searchTermInput.value.toLowerCase();
+  //           suggestionsList.innerHTML = ''; // Clear previous suggestions
+
+  //           if (query.length >= 1) { // Filter only after 2 characters
+  //             // Check the selected search type
+  //             const searchType = document.getElementById('searchType').value;
+  //             let suggestions = [];
+
+  //             if (searchType === 'Supplier Name') {
+  //               suggestions = supplierNames.filter(name =>
+  //                 name.toLowerCase().includes(query)
+  //               );
+  //             } else if (searchType === 'Item Name') {
+  //               suggestions = itemNames.filter(name =>
+  //                 name.toLowerCase().includes(query)
+  //               );
+  //             }else if (searchType === 'Supplier Phone No.') {
+  //               suggestions = phone.filter(name =>
+  //                 name.toLowerCase().includes(query)
+  //               );
+  //             }else if (searchType === 'Supplier Id') {
+  //               suggestions = suppId.filter(name =>
+  //                 name.toLowerCase().includes(query)
+  //               );
+  //             }
+
+  //             if (suggestions.length > 0) {
+  //               suggestionsList.style.display = 'block'; // Show suggestions
+  //               suggestions.forEach(suggestion => {
+  //                 const li = document.createElement('li');
+  //                 li.textContent = suggestion;
+  //                 li.className = 'autocomplete-item';
+  //                 li.addEventListener('click', () => {
+  //                   searchTermInput.value = suggestion; // Set input value
+  //                   suggestionsList.innerHTML = '';  // Clear suggestions
+  //                   suggestionsList.style.display = 'none'; // Hide suggestions
+  //                 });
+  //                 suggestionsList.appendChild(li);
+  //               });
+  //             } else {
+  //               suggestionsList.style.display = 'none'; // Hide suggestions if none match
+  //             }
+  //           } else {
+  //             suggestionsList.style.display = 'none'; // Hide suggestions for fewer than 2 characters
+  //           }
+  //         });
+
+  //         // Hide suggestions on outside click
+  //         document.addEventListener('click', (e) => {
+  //           if (!suggestionsList.contains(e.target) && e.target !== searchTermInput) {
+  //             suggestionsList.innerHTML = '';
+  //             suggestionsList.style.display = 'none';
+  //           }
+  //         });
+  //       });
+
+  //       function submitFilterForm() {
+  //         const searchType = document.getElementById("searchType").value;
+  //         document.getElementById("filterForm").submit();
+  //       }
+</script>
+
+</html>

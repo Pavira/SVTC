@@ -1,0 +1,6 @@
+#firebase json
+ownfbAdminConfig.json
+ownfbConfig.json
+
+#env files
+.env
